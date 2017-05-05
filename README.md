@@ -14,14 +14,20 @@
 
 | option | description |
 | ---: | :--- |
-| `text` | The order, in which the elements are traversed. Implemented possibilities are `post`, `pre` and `level`. |
-| `fontSize` | If an element matches the selector, then all its descendants will not be considered. |
-| `fontFace` | If an element matches the selector, then it will be collected. |
+| `text` | ... |
+| `fontSize` | The size of the font in pixels. |
+| `fontFace` | ... |
 | `rest` | Additional arguments to pass to super constructor: `mapping`, `wrapS`, `wrapT`, `magFilter`, `minFilter`, `format`, `type`, `anisotropy`. |
 
 ```javascript
 
-let sprite = new THREE.Spite();
+let texture = new THREE.TextTexture({
+  text: 'Carpe Diem',
+  fontFace: '"Times New Roman", Times, serif',
+  minFilter: THREE.LinearFilter,
+});
+let material = new THREE.SpriteMaterial({map: texture});
+let sprite = new THREE.Sprite(material);
 
 ```
 
