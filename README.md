@@ -28,16 +28,34 @@ let texture = new THREE.TextTexture({
 });
 let material = new THREE.SpriteMaterial({map: texture});
 let sprite = new THREE.Sprite(material);
-sprite.scale.setX(texture.aspectRatio).multiplyScalar(128);
+sprite.scale.set(texture.aspectRatio, 1, 1).multiplyScalar(128);
 
 ```
 
 ---
 
-`.text` Changing the value of this property will cause/lead the redrawing of the underlying image.
+`.text`
 
-`.fontSize` The family of the font. Changing this property changes the image.
+Changing the value of this property will cause/lead the redrawing of the underlying image.
 
-`.fontFamily` The family of the font. Changing this property changes the image.
+---
 
-`.aspectRatio` The width of the image devided by the height of the image.
+`.fontSize`
+
+The family of the font.
+
+Changing this property changes the image.
+
+---
+
+`.fontFamily`
+
+The family of the font.
+
+Changing this property changes the image.
+
+---
+
+`.aspectRatio`
+
+The width of the image devided by the height of the image.
