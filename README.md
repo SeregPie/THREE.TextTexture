@@ -10,20 +10,20 @@
 
 ## members
 
-`.constructor({text = '', fontSize = 16, fontFace = 'sans-serif', ...rest})`
+`.constructor({text = '', fontSize = 16, fontFamily = 'sans-serif', ...rest})`
 
 | option | description |
 | ---: | :--- |
-| `text` | ... |
+| `text` | The text that will be written on the canvas. |
 | `fontSize` | The size of the font in pixels. |
-| `fontFace` | ... |
-| `rest` | Additional arguments to pass to super constructor: `mapping`, `wrapS`, `wrapT`, `magFilter`, `minFilter`, `format`, `type`, `anisotropy`. |
+| `fontFamily` | The family of the font in pixels. |
+| `rest` | Additional arguments to pass to the super class constructor: `mapping`, `wrapS`, `wrapT`, `magFilter`, `minFilter`, `format`, `type`, `anisotropy`. |
 
 ```javascript
 
 let texture = new THREE.TextTexture({
   text: 'Carpe Diem',
-  fontFace: '"Times New Roman", Times, serif',
+  fontFamily: '"Times New Roman", Times, serif',
   minFilter: THREE.LinearFilter,
 });
 let material = new THREE.SpriteMaterial({map: texture});
@@ -35,7 +35,7 @@ let sprite = new THREE.Sprite(material);
 
 `.text`
 
-Changing this property changes the image.
+Changing the value of this property will cause/lead the redrawing of the underlying image.
 
 ---
 
@@ -45,7 +45,7 @@ Changing this property changes the image.
 
 ---
 
-`.fontFace`
+`.fontFamily`
 
 Changing this property changes the image.
 
