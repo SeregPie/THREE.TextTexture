@@ -14,7 +14,7 @@
 
 | option | description |
 | ---: | :--- |
-| `text` | The text that will be written on the canvas. |
+| `text` | The text to write on the canvas. |
 | `fontSize` | The size of the font in pixels. |
 | `fontFamily` | The family of the font. |
 | `rest` | Additional arguments to pass to the super class constructor: `mapping`, `wrapS`, `wrapT`, `magFilter`, `minFilter`, `format`, `type`, `anisotropy`. |
@@ -36,7 +36,9 @@ sprite.scale.set(texture.aspectRatio, 1, 1).multiplyScalar(128);
 
 `.text`
 
-Changing the value of this property will cause/lead the redrawing of the underlying image.
+The text written on the canvas.
+
+Changing the value of this property will cause/lead the redrawing of the underlying canvas.
 
 ---
 
@@ -58,4 +60,4 @@ Changing this property changes the image.
 
 `.aspectRatio`
 
-The width of the image devided by the height of the image.
+The width of the canvas devided by the height of the canvas.
