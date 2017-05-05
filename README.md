@@ -29,7 +29,7 @@ sprite.scale.set(texture.aspectRatio, 1, 1).multiplyScalar(128);
 
 The text to write on the canvas.
 
-Changing the value of this property will cause/lead the redrawing of the underlying canvas.
+Changing the value will redraw the canvas.
 
 ---
 
@@ -37,7 +37,7 @@ Changing the value of this property will cause/lead the redrawing of the underly
 
 The size of the font in pixels.
 
-Changing this property changes the image.
+Changing the value will redraw the canvas.
 
 ---
 
@@ -45,7 +45,7 @@ Changing this property changes the image.
 
 The family of the font.
 
-Changing this property changes the image.
+Changing the value will redraw the canvas.
 
 ---
 
