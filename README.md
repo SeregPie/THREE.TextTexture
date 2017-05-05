@@ -1,6 +1,6 @@
 # THREE.TextTexture
 
-A texture for writing text on the canvas. 
+A `TextTexture` object is a texture for writing text on its canvas.
 
 ## dependencies
 
