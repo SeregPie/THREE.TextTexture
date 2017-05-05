@@ -8,14 +8,7 @@ A texture for writing text on the canvas.
 
 ## members
 
-`.constructor({text = '', fontSize = 16, fontFamily = 'sans-serif', ...rest})`
-
-| option | description |
-| ---: | :--- |
-| `text` | The text to write on the canvas. |
-| `fontSize` | The size of the font in pixels. |
-| `fontFamily` | The family of the font. |
-| `rest` | Additional options to pass to the [superclass constructor](https://threejs.org/docs/index.html#api/textures/Texture). Possible options are `mapping`, `wrapS`, `wrapT`, `magFilter`, `minFilter`, `format`, `type` and `anisotropy`. |
+`.constructor({text, fontSize, fontFamily, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
 
 ```javascript
 
@@ -32,7 +25,7 @@ sprite.scale.set(texture.aspectRatio, 1, 1).multiplyScalar(128);
 
 ---
 
-`.text`
+`.text = ''`
 
 The text to write on the canvas.
 
@@ -40,7 +33,7 @@ Changing the value of this property will cause/lead the redrawing of the underly
 
 ---
 
-`.fontSize`
+`.fontSize = 16`
 
 The size of the font in pixels.
 
@@ -48,7 +41,7 @@ Changing this property changes the image.
 
 ---
 
-`.fontFamily`
+`.fontFamily = 'sans-serif'`
 
 The family of the font.
 
