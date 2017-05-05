@@ -4,7 +4,7 @@
 		constructor({
 			text = '',
 			fontSize = 16,
-			fontFace = 'sans-serif',
+			fontFamily = 'sans-serif',
 			mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy,
 		} = {}) {
 			let canvas = document.createElement('canvas');
@@ -12,7 +12,7 @@
 			super(canvas, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
 			this._text = text;
 			this._fontSize = fontSize;
-			this._fontFace = fontFace;
+			this._fontFamily = fontFamily;
 			this._updateImage();
 		}
 
@@ -20,16 +20,20 @@
 			let canvas = this.image;
 			let ctx = canvas.getContext('2d');
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			let font = `${this._fontSize}px ${this._fontFace}`;
-			ctx.font = font;
-			canvas.width = ctx.measureText(this._text).width;
-			canvas.height = this._fontSize * 3/2;
-			ctx.font = font;
-			ctx.textAlign = 'center';
-			ctx.textBaseline = 'middle';
-			ctx.fillStyle = 'white';
-			ctx.fillText(this._text, canvas.width / 2, canvas.height / 2);
-			this.aspectRatio = canvas.width / canvas.height;
+			if (this._text && this._fontSize) {
+				let font = `${this._fontSize}px ${this._fontFamily}`;
+				ctx.font = font;
+				canvas.width = ctx.measureText(this._text).width;
+				canvas.height = this._fontSize * 3/2;
+				ctx.font = font;
+				ctx.textAlign = 'center';
+				ctx.textBaseline = 'middle';
+				ctx.fillStyle = 'white';
+				ctx.fillText(this._text, canvas.width / 2, canvas.height / 2);
+			} else {
+				canvas.width = 1;
+				canvas.height = 1;
+			}
 			this.needsUpdate = true;
 		}
 
@@ -57,16 +61,20 @@
 			this._updateImage();
 		}
 
-		get fontFace() {
-			return this._fontFace;
+		get fontFamily() {
+			return this._fontFamily;
 		}
 
-		set fontFace(value) {
-			if (this._fontFace === value) {
+		set fontFamily(value) {
+			if (this._fontFamily === value) {
 				return;
 			}
-			this._fontFace = value;
+			this._fontFamily = value;
 			this._updateImage();
+		}
+
+		get aspectRatio() {
+			return this.image.width / this.image.height;
 		}
 	};
 
