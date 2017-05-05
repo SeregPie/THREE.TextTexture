@@ -16,7 +16,7 @@
 | ---: | :--- |
 | `text` | The text that will be written on the canvas. |
 | `fontSize` | The size of the font in pixels. |
-| `fontFamily` | The family of the font in pixels. |
+| `fontFamily` | The family of the font. |
 | `rest` | Additional arguments to pass to the super class constructor: `mapping`, `wrapS`, `wrapT`, `magFilter`, `minFilter`, `format`, `type`, `anisotropy`. |
 
 ```javascript
@@ -28,28 +28,16 @@ let texture = new THREE.TextTexture({
 });
 let material = new THREE.SpriteMaterial({map: texture});
 let sprite = new THREE.Sprite(material);
+sprite.scale.setX(texture.aspectRatio).multiplyScalar(128);
 
 ```
 
 ---
 
-`.text`
+`.text` Changing the value of this property will cause/lead the redrawing of the underlying image.
 
-Changing the value of this property will cause/lead the redrawing of the underlying image.
+`.fontSize` The family of the font. Changing this property changes the image.
 
----
+`.fontFamily` The family of the font. Changing this property changes the image.
 
-`.fontSize`
-
-Changing this property changes the image.
-
----
-
-`.fontFamily`
-
-Changing this property changes the image.
-
----
-
-`.aspectRatio`
-
+`.aspectRatio` The width of the image devided by the height of the image.
