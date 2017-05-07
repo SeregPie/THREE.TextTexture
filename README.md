@@ -56,3 +56,7 @@ Changing the value will redraw the canvas.
 *read-only*
 
 The width of the canvas devided by the height of the canvas.
+
+## see also
+
+- [THREE.TextTextureMappingGroup](https://github.com/SeregPie/THREE.TextTextureMappingGroup)
