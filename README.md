@@ -1,5 +1,7 @@
 # THREE.TextTexture
 
+`class THREE.TextTexture extends THREE.Texture`
+
 A `TextTexture` object is a texture for writing text on the canvas.
 
 ## dependencies
