@@ -22,6 +22,7 @@ let texture = new THREE.TextTexture({
 let material = new THREE.SpriteMaterial({map: texture});
 let sprite = new THREE.Sprite(material);
 sprite.scale.set(texture.aspectRatio, 1, 1).multiplyScalar(128);
+scene.add(sprite);
 
 ```
 
