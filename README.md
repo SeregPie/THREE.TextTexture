@@ -54,7 +54,7 @@ Changing the value will redraw the canvas.
 
 `.lineHeight = 3/2`
 
-The height of the line.
+The height of a text line.
 
 Changing the value will redraw the canvas.
 
