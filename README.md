@@ -10,7 +10,7 @@ A `TextTexture` object is a texture for writing text on the canvas.
 
 ## members
 
-`.constructor({text, fontSize, fontFamily, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
+`.constructor({text, fontSize, fontFamily, lineHeight, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
 
 ```javascript
 
@@ -52,7 +52,15 @@ Changing the value will redraw the canvas.
 
 ---
 
-`.aspectRatio`
+`.lineHeight = 3/2`
+
+The height of the line.
+
+Changing the value will redraw the canvas.
+
+---
+
+`.aspect`
 
 *read-only*
 
