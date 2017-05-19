@@ -5,6 +5,7 @@
 			text = '',
 			fontSize = 16,
 			fontFamily = 'sans-serif',
+			lineHeight = 3/2,
 			mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy,
 		} = {}) {
 			let canvas = document.createElement('canvas');
@@ -13,26 +14,26 @@
 			this._text = text;
 			this._fontSize = fontSize;
 			this._fontFamily = fontFamily;
+			this._lineHeight = lineHeight;
 			this._updateImage();
 		}
 
 		_updateImage() {
-			let canvas = this.image;
+			let canvas = this.image
 			let ctx = canvas.getContext('2d');
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			if (this._text && this._fontSize) {
 				let font = `${this._fontSize}px ${this._fontFamily}`;
 				ctx.font = font;
 				canvas.width = ctx.measureText(this._text).width;
-				canvas.height = this._fontSize * 3/2;
+				canvas.height = this._fontSize * this._lineHeight;
 				ctx.font = font;
 				ctx.textAlign = 'center';
 				ctx.textBaseline = 'middle';
 				ctx.fillStyle = 'white';
 				ctx.fillText(this._text, canvas.width / 2, canvas.height / 2);
 			} else {
-				canvas.width = 1;
-				canvas.height = 1;
+				canvas.width = canvas.height = 1;
 			}
 			this.needsUpdate = true;
 		}
@@ -73,7 +74,19 @@
 			this._updateImage();
 		}
 
-		get aspectRatio() {
+		get lineHeight() {
+			return this._lineHeight;
+		}
+
+		set lineHeight(value) {
+			if (this._lineHeight === value) {
+				return;
+			}
+			this._lineHeight = value;
+			this._updateImage();
+		}
+
+		get aspect() {
 			return this.image.width / this.image.height;
 		}
 	};
