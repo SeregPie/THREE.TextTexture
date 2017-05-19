@@ -19,9 +19,9 @@ let texture = new THREE.TextTexture({
   fontFamily: '"Times New Roman", Times, serif',
   minFilter: THREE.LinearFilter,
 });
-let material = new THREE.SpriteMaterial({map: texture});
+let material = new THREE.SpriteMaterial({map: texture, color: 0xffffff});
 let sprite = new THREE.Sprite(material);
-sprite.scale.set(texture.aspectRatio, 1, 1).multiplyScalar(8);
+sprite.scale.setX(texture.aspect).multiplyScalar(8);
 scene.add(sprite);
 
 ```
