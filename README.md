@@ -64,7 +64,7 @@ Changing the value will redraw the canvas.
 
 *read-only*
 
-The width of the canvas devided by the height of the canvas.
+The width of the canvas devided by the height.
 
 ## see also
 
