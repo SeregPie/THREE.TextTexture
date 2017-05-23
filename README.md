@@ -16,8 +16,8 @@ A `TextTexture` object is a texture for writing text on the canvas.
 
 let texture = new THREE.TextTexture({
   text: 'Carpe Diem',
+  fontSize: 32,
   fontFamily: '"Times New Roman", Times, serif',
-  minFilter: THREE.LinearFilter,
 });
 let material = new THREE.SpriteMaterial({map: texture, color: 0xffffff});
 let sprite = new THREE.Sprite(material);
@@ -66,6 +66,8 @@ Changing the value will redraw the canvas.
 
 The width of the canvas devided by the height. If the width or the height is 0, the value is 1.
 
+---
+
 `.blank`
 
 *read-only*
@@ -74,4 +76,4 @@ The value is `true`, if the image is blank.
 
 ## see also
 
-- [THREE.TextTextureMappingGroup](https://github.com/SeregPie/THREE.TextTextureMappingGroup)
+- [THREE.TextSprite](https://github.com/SeregPie/THREE.TextSprite)
