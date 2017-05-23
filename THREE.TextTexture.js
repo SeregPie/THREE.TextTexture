@@ -6,35 +6,39 @@
 			fontSize = 16,
 			fontFamily = 'sans-serif',
 			lineHeight = 3/2,
-			mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy,
+			magFilter = THREE.LinearFilter,
+			minFilter = THREE.LinearFilter,
+			mapping, wrapS, wrapT, format, type, anisotropy,
 		} = {}) {
-			let canvas = document.createElement('canvas');
-			canvas.getContext('2d');
-			super(canvas, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
+			super(document.createElement('canvas'), mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
 			this._text = text;
 			this._fontSize = fontSize;
 			this._fontFamily = fontFamily;
 			this._lineHeight = lineHeight;
-			this._updateImage();
+			this._redrawCanvas();
 		}
 
-		_updateImage() {
-			let canvas = this.image
-			let ctx = canvas.getContext('2d');
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			if (this._text && this._fontSize) {
-				let font = `${this._fontSize}px ${this._fontFamily}`;
-				ctx.font = font;
-				canvas.width = ctx.measureText(this._text).width;
-				canvas.height = this._fontSize * this._lineHeight;
-				ctx.font = font;
-				ctx.textAlign = 'center';
-				ctx.textBaseline = 'middle';
-				ctx.fillStyle = 'white';
-				ctx.fillText(this._text, canvas.width / 2, canvas.height / 2);
-			} else {
-				canvas.width = canvas.height = 1;
-			}
+		_redrawCanvas() {
+			this.blank = (function(ctx) {
+				ctx.clearRect(0, 0, this.image.width, this.image.height);
+				if (this._text && this._fontSize && this._lineHeight) {
+					let font = `${this._fontSize}px ${this._fontFamily}`;
+					ctx.font = font;
+					let measuredTextWidth = ctx.measureText(this._text).width;
+					if (measuredTextWidth) {
+						this.image.width = measuredTextWidth;
+						this.image.height = this._fontSize * this._lineHeight;
+						ctx.font = font;
+						ctx.textAlign = 'center';
+						ctx.textBaseline = 'middle';
+						ctx.fillStyle = 'white';
+						ctx.fillText(this._text, this.image.width / 2, this.image.height / 2);
+						return false;
+					}
+				}
+				this.image.width = this.image.height = 1;
+				return true;
+			}).call(this, this.image.getContext('2d'));
 			this.needsUpdate = true;
 		}
 
@@ -43,11 +47,10 @@
 		}
 
 		set text(value) {
-			if (this._text === value) {
-				return;
+			if (this._text !== value) {
+				this._text = value;
+				this._redrawCanvas();
 			}
-			this._text = value;
-			this._updateImage();
 		}
 
 		get fontSize() {
@@ -55,11 +58,10 @@
 		}
 
 		set fontSize(value) {
-			if (this._fontSize === value) {
-				return;
+			if (this._fontSize !== value) {
+				this._fontSize = value;
+				this._redrawCanvas();
 			}
-			this._fontSize = value;
-			this._updateImage();
 		}
 
 		get fontFamily() {
@@ -67,11 +69,10 @@
 		}
 
 		set fontFamily(value) {
-			if (this._fontFamily === value) {
-				return;
+			if (this._fontFamily !== value) {
+				this._fontFamily = value;
+				this._redrawCanvas();
 			}
-			this._fontFamily = value;
-			this._updateImage();
 		}
 
 		get lineHeight() {
@@ -79,15 +80,17 @@
 		}
 
 		set lineHeight(value) {
-			if (this._lineHeight === value) {
-				return;
+			if (this._lineHeight !== value) {
+				this._lineHeight = value;
+				this._redrawCanvas();
 			}
-			this._lineHeight = value;
-			this._updateImage();
 		}
 
 		get aspect() {
-			return this.image.width / this.image.height;
+			if (this.image.width && this.image.height) {
+				return this.image.width / this.image.height;
+			}
+			return 1;
 		}
 	};
 
