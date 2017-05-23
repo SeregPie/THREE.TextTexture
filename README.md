@@ -64,7 +64,13 @@ Changing the value will redraw the canvas.
 
 *read-only*
 
-The width of the canvas devided by the height.
+The width of the canvas devided by the height. If the width or the height is 0, the value is 1.
+
+`.blank`
+
+*read-only*
+
+The value is `true`, if the image is blank.
 
 ## see also
 
