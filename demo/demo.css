@@ -1,0 +1,75 @@
+html, body {
+	height: 100%;
+	min-height: 100%;
+}
+
+html {
+	box-sizing: border-box;
+	line-height: 1;
+}
+
+body {
+	overflow: hidden;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+	position: relative;
+	min-width: 0;
+	min-height: 0;
+	margin: 0;
+	padding: 0;
+}
+
+#GitHubLink {
+	position: absolute;
+	z-index: 1;
+	left: 16px;
+	top: 16px;
+	opacity: 0.8;
+	color: White;
+	font-size: 24px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+#TextInputWrapper {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	right: 0;
+	bottom: 16px;
+	width: 512px;
+	max-width: 100%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+#TextInputWrapper > input {
+	order: 1;
+	opacity: 0.2;
+	outline: none;
+	border: none;
+	padding: 8px;
+	text-align: center;
+	color: Black;
+	font-size: 24px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#TextInputWrapper > label {
+	order: 0;
+	opacity: 0.2;
+	text-align: center;
+	color: White;
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#TextInputWrapper > input:focus,
+#TextInputWrapper > input:focus + label {
+	opacity: initial;
+}

@@ -8,7 +8,7 @@
 			fontWeight = 'normal',
 			fontSize = 16,
 			fontFamily = 'sans-serif',
-			padding = 1/2,
+			padding = 1/8,
 			//textAlign = 'center',
 			lineHeight = 1,
 			magFilter = THREE.LinearFilter,
@@ -34,14 +34,14 @@
 			} else {
 				this.lines = [];
 			}
-			this.linesCount = this.lines.length;			
+			this.linesCount = this.lines.length;
 		}
 
 		_redrawCanvas() {
 			(function(ctx) {
 				ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 				if (this._text && this._fontSize) {
-					let font = [this._fontStyle, this._fontVariant, this._fontWeight, `${this._fontSize}px`, this._fontFamily].join(' ');
+					let font = this.font;
 					ctx.font = font;
 					let measuredTextWidth = ctx.measureText(this._text).width;
 					if (measuredTextWidth) {
@@ -70,6 +70,10 @@
 				this._updateLines();
 				this._redrawCanvas();
 			}
+		}
+
+		get font() {
+			return [this._fontStyle, this._fontVariant, this._fontWeight, `${this._fontSize}px`, this._fontFamily].join(' ');
 		}
 
 		get fontStyle() {
