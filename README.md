@@ -16,6 +16,7 @@ An instance of `TextTexture` is a texture for writing text on the canvas.
 
 let texture = new THREE.TextTexture({
   text: 'Carpe Diem',
+  fontStyle: 'italic',
   fontSize: 32,
   fontFamily: '"Times New Roman", Times, serif',
 });
