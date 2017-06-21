@@ -10,7 +10,7 @@ An instance of `TextTexture` is a texture for writing text on the canvas.
 
 ## members
 
-`.constructor({text, fontSize, fontFamily, lineHeight, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
+`.constructor({text, fontStyle, fontVariant, fontWeight, fontSize, fontFamily, padding, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
 
 ```javascript
 
@@ -30,7 +30,31 @@ scene.add(sprite);
 
 `.text = ''`
 
-The text to write on the canvas.
+A string for the text to write on the canvas.
+
+Changing the value will redraw the canvas.
+
+---
+
+`.fontStyle = 'normal'`
+
+A string for the font style. Possible values are `'normal'`, `'italic'` and `'oblique'`.
+
+Changing the value will redraw the canvas.
+
+---
+
+`.fontVariant = 'normal'`
+
+A string for the font variant. Possible values are `'normal'` and `'small-caps'`.
+
+Changing the value will redraw the canvas.
+
+---
+
+`.fontWeight = 'normal'`
+
+A string for the font weight. Possible values are `'normal'`, `'bold'`, `'bolder'`, `'lighter'` and `'100'` to `'900'`.
 
 Changing the value will redraw the canvas.
 
@@ -38,7 +62,7 @@ Changing the value will redraw the canvas.
 
 `.fontSize = 16`
 
-The size of the font in pixels.
+A number for the font size in pixels.
 
 Changing the value will redraw the canvas.
 
@@ -46,15 +70,15 @@ Changing the value will redraw the canvas.
 
 `.fontFamily = 'sans-serif'`
 
-The family of the font.
+A string for the font family.
 
 Changing the value will redraw the canvas.
 
 ---
 
-`.lineHeight = 3/2`
+`.padding = 1/2`
 
-The height of a text line.
+A number for the space around the text of the canvas.
 
 Changing the value will redraw the canvas.
 
@@ -65,14 +89,6 @@ Changing the value will redraw the canvas.
 *read-only*
 
 The width of the canvas devided by the height. If the width or the height is 0, the value is 1.
-
----
-
-`.blank`
-
-*read-only*
-
-The value is `true`, if the image is blank.
 
 ## see also
 
