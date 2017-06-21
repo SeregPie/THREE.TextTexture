@@ -4,6 +4,10 @@
 
 An instance of `TextTexture` is a texture for writing text on the canvas.
 
+## demo
+
+[Try it out!](https://seregpie.github.io/THREE.TextTexture/)
+
 ## dependencies
 
 - [THREE](https://github.com/mrdoob/three.js)
