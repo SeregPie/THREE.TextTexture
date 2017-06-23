@@ -83,7 +83,7 @@ Changing the value will redraw the canvas.
 
 `.padding = 1/8`
 
-A number for the space around the text of the canvas. The pixels are calculated from the font size.
+A number for the space around the text of the canvas. The pixels are calculated relative to the font size.
 
 Changing the value will redraw the canvas.
 
@@ -93,7 +93,7 @@ Changing the value will redraw the canvas.
 
 *read-only*
 
-The combined font properties.
+A string for the combined font properties.
 
 ---
 
