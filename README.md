@@ -14,7 +14,7 @@ An instance of `TextTexture` is a texture for writing text on the canvas.
 
 ## members
 
-`.constructor({text, fontStyle, fontVariant, fontWeight, fontSize, fontFamily, padding, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
+`.constructor({autoRedraw, text, fontStyle, fontVariant, fontWeight, fontSize, fontFamily, textAlign, lineHeight, padding, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
 
 ```javascript
 
@@ -81,19 +81,35 @@ Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
-`.padding = 1/4`
-
-A number for the space around the text of the canvas. The pixels are calculated relative to the font size.
-
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
-
----
-
 `.font`
 
 *read-only*
 
 A string for the combined font properties.
+
+---
+
+`.textAlign = 'center'`
+
+A string for the horizontal alignment of text. Possible values are `'center'`, `'left'` and `'right'`.
+
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
+
+---
+
+`.lineHeight = 1`
+
+A number for the height of a text line. The pixels are calculated relative to the font size.
+
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
+
+---
+
+`.padding = 1/4`
+
+A number for the space around the text of the canvas. The pixels are calculated relative to the font size.
+
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
