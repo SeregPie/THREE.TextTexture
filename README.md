@@ -37,7 +37,7 @@ scene.add(sprite);
 
 A string for the text to write on the canvas.
 
-Changing the value will redraw the canvas.
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
@@ -45,7 +45,7 @@ Changing the value will redraw the canvas.
 
 A string for the font style. Possible values are `'normal'`, `'italic'` and `'oblique'`.
 
-Changing the value will redraw the canvas.
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
@@ -53,7 +53,7 @@ Changing the value will redraw the canvas.
 
 A string for the font variant. Possible values are `'normal'` and `'small-caps'`.
 
-Changing the value will redraw the canvas.
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
@@ -61,7 +61,7 @@ Changing the value will redraw the canvas.
 
 A string for the font weight. Possible values are `'normal'`, `'bold'`, `'bolder'`, `'lighter'` and `'100'` to `'900'`.
 
-Changing the value will redraw the canvas.
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
@@ -69,7 +69,7 @@ Changing the value will redraw the canvas.
 
 A number for the font size in pixels.
 
-Changing the value will redraw the canvas.
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
@@ -77,15 +77,15 @@ Changing the value will redraw the canvas.
 
 A string for the font family.
 
-Changing the value will redraw the canvas.
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
-`.padding = 1/8`
+`.padding = 1/4`
 
 A number for the space around the text of the canvas. The pixels are calculated relative to the font size.
 
-Changing the value will redraw the canvas.
+Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
@@ -97,6 +97,30 @@ A string for the combined font properties.
 
 ---
 
+`.redraw()`
+
+Redraws the canvas.
+
+---
+
+`.autoRedraw = true`
+
+If `true`, changing properties will **not** redraw the canvas.
+
+Make use of it, if you want change multiple properties at once. This way you will avoid unnecessary `redraw` calls.
+
+```javascript
+
+texture.autoRedraw = false;
+texture.text = 'Memento Mori';
+texture.fontWeight = 'bold';
+texture.fontSize = 48;
+texture.redraw();
+texture.autoRedraw = true;
+
+```
+
+---
 
 `.aspect`
 
