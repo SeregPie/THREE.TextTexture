@@ -8,7 +8,7 @@
 			fontWeight = 'normal',
 			fontSize = 16,
 			fontFamily = 'sans-serif',
-			padding = 1/8,
+			padding = 1/4,
 			//textAlign = 'center',
 			lineHeight = 1,
 			magFilter = THREE.LinearFilter,
@@ -16,6 +16,7 @@
 			mapping, wrapS, wrapT, format, type, anisotropy,
 		} = {}) {
 			super(document.createElement('canvas'), mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
+			this.autoRedraw = true;
 			this._text = text;
 			this._fontStyle = fontStyle;
 			this._fontVariant = fontVariant;
@@ -25,7 +26,7 @@
 			this._padding = padding;
 			this._lineHeight = lineHeight;
 			this._updateLines();
-			this._redrawCanvas();
+			this.redraw();
 		}
 
 		_updateLines() {
@@ -37,7 +38,7 @@
 			this.linesCount = this.lines.length;
 		}
 
-		_redrawCanvas() {
+		redraw() {
 			(function(ctx) {
 				ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 				if (this._text && this._fontSize) {
@@ -60,6 +61,12 @@
 			this.needsUpdate = true;
 		}
 
+		_redrawIfAuto() {
+			if (this.autoRedraw) {
+				this.redraw();
+			}
+		}
+
 		get text() {
 			return this._text;
 		}
@@ -68,7 +75,7 @@
 			if (this._text !== value) {
 				this._text = value;
 				this._updateLines();
-				this._redrawCanvas();
+				this._redrawIfAuto();
 			}
 		}
 
@@ -83,7 +90,7 @@
 		set fontStyle(value) {
 			if (this._fontStyle !== value) {
 				this._fontStyle = value;
-				this._redrawCanvas();
+				this._redrawIfAuto();
 			}
 		}
 
@@ -94,7 +101,7 @@
 		set fontVariant(value) {
 			if (this._fontVariant !== value) {
 				this._fontVariant = value;
-				this._redrawCanvas();
+				this._redrawIfAuto();
 			}
 		}
 
@@ -105,7 +112,7 @@
 		set fontWeight(value) {
 			if (this._fontWeight !== value) {
 				this._fontWeight = value;
-				this._redrawCanvas();
+				this._redrawIfAuto();
 			}
 		}
 
@@ -116,7 +123,7 @@
 		set fontSize(value) {
 			if (this._fontSize !== value) {
 				this._fontSize = value;
-				this._redrawCanvas();
+				this._redrawIfAuto();
 			}
 		}
 
@@ -127,7 +134,7 @@
 		set fontFamily(value) {
 			if (this._fontFamily !== value) {
 				this._fontFamily = value;
-				this._redrawCanvas();
+				this._redrawIfAuto();
 			}
 		}
 
@@ -138,7 +145,7 @@
 		set lineHeight(value) {
 			if (this._lineHeight !== value) {
 				this._lineHeight = value;
-				this._redrawCanvas();
+				this._redrawIfAuto();
 			}
 		}
 
@@ -149,7 +156,7 @@
 		set padding(value) {
 			if (this._padding !== value) {
 				this._padding = value;
-				this._redrawCanvas();
+				this._redrawIfAuto();
 			}
 		}
 
