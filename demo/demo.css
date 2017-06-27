@@ -48,19 +48,19 @@ body {
 	flex-direction: column;
 }
 
-#TextInputWrapper > input {
+#TextInputWrapper > textarea {
 	order: 1;
 	opacity: 0.2;
 	outline: none;
 	border: none;
 	padding: 8px;
-	text-align: center;
 	color: Black;
 	font-size: 24px;
 	font-family: Arial, Helvetica, sans-serif;
+	resize: none;
 }
 
-#TextInputWrapper > label {
+#TextInputWrapper > span {
 	order: 0;
 	opacity: 0.2;
 	text-align: center;
@@ -69,7 +69,7 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-#TextInputWrapper > input:focus,
-#TextInputWrapper > input:focus + label {
+#TextInputWrapper > textarea:focus,
+#TextInputWrapper > textarea:focus + span {
 	opacity: initial;
 }
