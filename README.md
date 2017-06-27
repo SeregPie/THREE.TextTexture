@@ -41,6 +41,14 @@ Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
+`.lines`
+
+*read-only*
+
+An array of the text split by the new line character.
+
+---
+
 `.fontStyle = 'normal'`
 
 A string for the font style. Possible values are `'normal'`, `'italic'` and `'oblique'`.
@@ -91,7 +99,7 @@ A string for the combined font properties.
 
 `.textAlign = 'center'`
 
-A string for the horizontal alignment of text. Possible values are `'center'`, `'left'` and `'right'`.
+A string for the horizontal alignment of the text lines. Possible values are `'center'`, `'left'` and `'right'`.
 
 Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
