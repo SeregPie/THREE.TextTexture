@@ -20,9 +20,9 @@
 			fontWeight = 'normal',
 			fontSize = 16,
 			fontFamily = 'sans-serif',
-			padding = 1/4,
 			textAlign = 'center',
 			lineHeight = 1,
+			padding = 1/4,
 			magFilter = THREE.LinearFilter,
 			minFilter = THREE.LinearFilter,
 			mapping, wrapS, wrapT, format, type, anisotropy,
@@ -35,9 +35,9 @@
 			this._fontWeight = fontWeight;
 			this._fontSize = fontSize;
 			this._fontFamily = fontFamily;
-			this._padding = padding;
 			this._textAlign = textAlign;
 			this._lineHeight = lineHeight;
+			this._padding = padding;
 			/*
 			this._lines = undefined;
 			this._font = undefined;
@@ -226,21 +226,6 @@
 			return this.fontSize * this.lineHeight;
 		}
 
-		get padding() {
-			return this._padding;
-		}
-
-		set padding(value) {
-			if (this._padding !== value) {
-				this._padding = value;
-				this._redrawIfAuto();
-			}
-		}
-
-		get paddingInPixels() {
-			return this.fontSize * this.padding;
-		}
-
 		_computeTextWidth() {
 			let returns = 0;
 			for (let line of this.lines) {
@@ -265,6 +250,21 @@
 				this._textHeight = this._computeTextHeight();
 			}
 			return this._textHeight;
+		}
+
+		get padding() {
+			return this._padding;
+		}
+
+		set padding(value) {
+			if (this._padding !== value) {
+				this._padding = value;
+				this._redrawIfAuto();
+			}
+		}
+
+		get paddingInPixels() {
+			return this.fontSize * this.padding;
 		}
 
 		get aspect() {
