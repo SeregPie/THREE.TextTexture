@@ -10,7 +10,7 @@
 	];
 	let textAlignValues = ['center', 'left', 'right'];
 
-	let n = 100;
+	let n = 1;
 
 	let renderer = new THREE.WebGLRenderer({antialias: true});
 	renderer.setClearColor(0x333333);
@@ -86,8 +86,8 @@
 	gui.add(texture, 'fontSize', 0, 128).step(1);
 	gui.add(texture, 'fontFamily', fontFamilyValues);
 	gui.add(texture, 'textAlign', textAlignValues);
-	gui.add(texture, 'lineHeight', 0, 3).step(1/100);
-	gui.add(texture, 'padding', 0, 1).step(1/100);
+	gui.add(texture, 'lineHeight', 0, 3).step(1/20);
+	gui.add(texture, 'padding', 0, 1).step(1/20);
 
 	let TextInput = document.getElementById('TextInput');
 	TextInput.value = texture.text;
