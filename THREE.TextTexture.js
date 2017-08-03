@@ -9,13 +9,28 @@
 		};
 	})();
 
+	let defaultAutoRedraw = true;
+	let normalizeAutoRedraw = function(value) {
+		return value === undefined ? defaultAutoRedraw : !!value;
+	};
+
+	let defaultText = '';
+	let normalizeText = function(value) {
+		return value === undefined ? defaultText : '' + value;
+	};
+
+	let defaultFontStyle = 'normal';
+	let normalizeFontStyle = function(value) {
+		return value === undefined ? defaultFontStyle : '' + value;
+	};
+
 
 
 	THREE.TextTexture = class extends THREE.Texture {
 		constructor({
-			autoRedraw = true,
-			text = '',
-			fontStyle = 'normal',
+			autoRedraw = defaultAutoRedraw,
+			text = defaultText,
+			fontStyle = defaultFontStyle,
 			fontVariant = 'normal',
 			fontWeight = 'normal',
 			fontSize = 16,
@@ -28,9 +43,9 @@
 			mapping, wrapS, wrapT, format, type, anisotropy,
 		} = {}) {
 			super(document.createElement('canvas'), mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
-			this.autoRedraw = autoRedraw;
-			this._text = text;
-			this._fontStyle = fontStyle;
+			this._autoRedraw = normalizeAutoRedraw(autoRedraw);
+			this._text = normalizeText(text);
+			this._fontStyle = normalizeFontStyle(fontStyle);
 			this._fontVariant = fontVariant;
 			this._fontWeight = fontWeight;
 			this._fontSize = fontSize;
@@ -78,6 +93,14 @@
 			this.needsUpdate = true;
 		}
 
+		get autoRedraw() {
+			return this._autoRedraw;
+		}
+
+		set autoRedraw(value) {
+			this._autoRedraw = normalizeAutoRedraw(value);
+		}
+
 		_redrawIfAuto() {
 			if (this.autoRedraw) {
 				this.redraw();
@@ -89,6 +112,7 @@
 		}
 
 		set text(value) {
+			value = normalizeText(value);
 			if (this._text !== value) {
 				this._text = value;
 				this._lines = undefined;
@@ -121,6 +145,7 @@
 		}
 
 		set fontStyle(value) {
+			value = normalizeFontStyle(value);
 			if (this._fontStyle !== value) {
 				this._fontStyle = value;
 				this._font = undefined;
