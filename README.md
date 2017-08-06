@@ -12,6 +12,27 @@ An instance of `TextTexture` is a texture for writing text on the canvas.
 
 - [THREE](https://github.com/mrdoob/three.js)
 
+## installation
+
+Install the [package](https://www.npmjs.com/package/three.texttexture) via npm.
+
+```
+
+$ npm install three.texttexture
+
+```
+
+---
+
+If you prefer, you can include the code directly in your project.
+
+```html
+
+<script src="https://unpkg.com/three"></script>
+<script src="https://unpkg.com/three.texttexture"></script>
+
+```
+
 ## members
 
 `.constructor({autoRedraw, text, fontStyle, fontVariant, fontWeight, fontSize, fontFamily, textAlign, lineHeight, padding, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`

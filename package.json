@@ -1,0 +1,33 @@
+{
+	"name": "three.texttexture",
+	"version": "17.8.6",
+	"description": "A texture for writing text on its canvas.",
+	"main": "THREE.TextTexture.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SeregPie/THREE.TextTexture.git"
+	},
+	"keywords": [
+		"threejs",
+		"canvas",
+		"text",
+		"texture",
+		"image",
+		"font",
+		"sprite",
+		"material",
+		"aspect-ratio",
+		"3d",
+		"class",
+		"plugin"
+	],
+	"author": "Sergej Sintschilin",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/SeregPie/THREE.TextTexture/issues"
+	},
+	"homepage": "https://github.com/SeregPie/THREE.TextTexture#readme",
+	"dependencies": {
+		"three": "^0.86.0"
+	}
+}

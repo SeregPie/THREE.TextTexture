@@ -17,9 +17,9 @@ body {
 *:after {
 	box-sizing: inherit;
 	position: relative;
+	margin: 0;
 	min-width: 0;
 	min-height: 0;
-	margin: 0;
 	padding: 0;
 }
 
@@ -41,9 +41,9 @@ body {
 	left: 0;
 	right: 0;
 	bottom: 16px;
+	margin: auto;
 	width: 512px;
 	max-width: 100%;
-	margin: auto;
 	display: flex;
 	flex-direction: column;
 }
