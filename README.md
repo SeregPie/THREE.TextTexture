@@ -16,9 +16,9 @@ An instance of `TextTexture` is a texture for writing text on the canvas.
 
 Install the [package](https://www.npmjs.com/package/three.texttexture) via npm.
 
-```
+```sh
 
-$ npm install three.texttexture
+npm install three.texttexture
 
 ```
 
