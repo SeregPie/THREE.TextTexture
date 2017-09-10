@@ -12,7 +12,7 @@ An instance of `TextTexture` is a texture for writing text on the canvas.
 
 - [THREE](https://github.com/mrdoob/three.js)
 
-## installation
+## setup
 
 Install the [package](https://www.npmjs.com/package/three.texttexture) via npm.
 
@@ -24,7 +24,7 @@ npm install three.texttexture
 
 ---
 
-If you prefer, you can include the code directly in your project.
+Include the code in your page via a CDN.
 
 ```html
 
@@ -58,8 +58,6 @@ scene.add(sprite);
 
 A string for the text to write on the canvas.
 
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
-
 ---
 
 `.lines`
@@ -74,15 +72,11 @@ An array of the text split by the new line character.
 
 A string for the font style. Possible values are `'normal'`, `'italic'` and `'oblique'`.
 
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
-
 ---
 
 `.fontVariant = 'normal'`
 
 A string for the font variant. Possible values are `'normal'` and `'small-caps'`.
-
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
@@ -90,23 +84,17 @@ Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 A string for the font weight. Possible values are `'normal'`, `'bold'`, `'bolder'`, `'lighter'` and `'100'` to `'900'`.
 
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
-
 ---
 
 `.fontSize = 16`
 
 A number for the font size in pixels.
 
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
-
 ---
 
 `.fontFamily = 'sans-serif'`
 
 A string for the font family.
-
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
 ---
 
@@ -122,21 +110,21 @@ A string for the combined font properties.
 
 A string for the horizontal alignment of the text lines. Possible values are `'center'`, `'left'` and `'right'`.
 
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
-
 ---
 
 `.lineHeight = 1`
 
 A number for the height of a text line. The pixels are calculated relative to the font size.
 
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
-
 ---
 
 `.padding = 1/4`
 
 A number for the space around the text of the canvas. The pixels are calculated relative to the font size.
+
+---
+
+`.text` • `.fontStyle` • `.fontVariant` • `.fontWeight` • `.fontSize` • `.fontFamily` • `.textAlign` • `.lineHeight` • `.padding`
 
 Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 

@@ -1,19 +1,16 @@
 (function() {
 
-	let fontStyleValues = ['normal', 'italic', 'oblique'];
+	let fontStyleValues = ['normal', 'italic'];
 	let fontVariantValues = ['normal', 'small-caps'];
 	let fontWeightValues = ['normal', 'bold'];
-	let fontFamilyValues = [
-		'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia',
-		'Impact', 'Lucida Console', 'Tahoma', 'Times New Roman', 'Verdana',
-		'serif', 'sans-serif', 'monospace',
-	];
+	let fontFamilyValues = ['serif', 'sans-serif', 'monospace'];
 	let textAlignValues = ['center', 'left', 'right'];
 
 	let n = 1;
 
 	let renderer = new THREE.WebGLRenderer({antialias: true});
-	renderer.setClearColor(0x333333);
+	//let renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+	//renderer.setClearColor(0x000000, 0);
 	document.body.appendChild(renderer.domElement);
 
 	let scene = new THREE.Scene();
@@ -38,7 +35,7 @@
 	let material = new THREE.MeshBasicMaterial({
 		map: texture,
 		color: 0xff69b4,
-		//transparent: true,
+		transparent: true,
 	});
 	let geometry = new THREE.PlaneGeometry(n, n, n);
 	let mesh = new THREE.Mesh(geometry, material);

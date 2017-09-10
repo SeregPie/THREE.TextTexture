@@ -275,4 +275,4 @@
 		}
 	};
 
-}).call(this, THREE);
+})(THREE);

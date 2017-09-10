@@ -1,6 +1,6 @@
 {
 	"name": "three.texttexture",
-	"version": "17.8.6",
+	"version": "17.9.10",
 	"description": "A texture for writing text on its canvas.",
 	"main": "THREE.TextTexture.js",
 	"repository": {
@@ -28,6 +28,6 @@
 	},
 	"homepage": "https://github.com/SeregPie/THREE.TextTexture#readme",
 	"dependencies": {
-		"three": "^0.86.0"
+		"three": "^0.87.1"
 	}
 }
