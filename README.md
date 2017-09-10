@@ -148,7 +148,7 @@ Redraws the canvas.
 
 If `false`, changing properties will **not** redraw the canvas.
 
-Make use of it, if you want change multiple properties at once. This way you will avoid unnecessary `.redraw()` calls.
+Make use of it, if you want to change multiple properties at once. This way you will avoid unnecessary `.redraw()` calls.
 
 ```javascript
 
