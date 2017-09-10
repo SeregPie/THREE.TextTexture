@@ -124,7 +124,15 @@ A number for the space around the text of the canvas. The pixels are calculated 
 
 ---
 
-`.text` • `.fontStyle` • `.fontVariant` • `.fontWeight` • `.fontSize` • `.fontFamily` • `.textAlign` • `.lineHeight` • `.padding`
+`.text`
+`.fontStyle`
+`.fontVariant`
+`.fontWeight`
+`.fontSize`
+`.fontFamily`
+`.textAlign`
+`.lineHeight`
+`.padding`
 
 Changing the value will redraw the canvas, if `autoRedraw` is `true`.
 
