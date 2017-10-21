@@ -42,23 +42,27 @@ let TextTexture = class extends THREE.Texture {
 	redraw() {
 		let ctx = this.image.getContext('2d');
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-		if (this.textWidth && this.textHeight) {
-			ctx.canvas.width = this.textWidth + this.paddingInPixels * 2;
-			ctx.canvas.height = this.textHeight + this.paddingInPixels * 2;
+		if (this.textWidthInPixels && this.textHeightInPixels) {
+			ctx.canvas.width = this.imageWidthInPixels;
+			ctx.canvas.height = this.imageHeightInPixels;
 			ctx.font = this.font;
-			ctx.textAlign = this.textAlign;
 			ctx.textBaseline = 'middle';
 			ctx.fillStyle = 'white';
-			let left = this.paddingInPixels + (() => {
-				switch (ctx.textAlign.toLowerCase()) {
-					case 'left':
-						return 0;
-					case 'right':
-						return this.textWidth;
-					case 'center':
-						return this.textWidth / 2;
-				}
-			})();
+			let left;
+			switch (this.textAlign) {
+				case 'left':
+					ctx.textAlign = 'left';
+					left = this.paddingInPixels;
+					break;
+				case 'right':
+					ctx.textAlign = 'right';
+					left = this.paddingInPixels + this.textWidthInPixels;
+					break;
+				case 'center':
+					ctx.textAlign = 'center';
+					left = this.paddingInPixels + this.textWidthInPixels / 2;
+					break;
+			}
 			let top = this.paddingInPixels + this.fontSize / 2;
 			for (let line of this.lines) {
 				ctx.fillText(line, left, top);
@@ -218,7 +222,7 @@ let TextTexture = class extends THREE.Texture {
 		return this.fontSize * this.lineHeight;
 	}
 
-	_computeTextWidth() {
+	_computeTextWidthInPixels() {
 		let returns = 0;
 		for (let line of this.lines) {
 			returns = Math.max(Canvas_measureText(this.font, line).width, returns);
@@ -226,15 +230,15 @@ let TextTexture = class extends THREE.Texture {
 		return returns;
 	}
 
-	get textWidth() {
+	get textWidthInPixels() {
 		if (this._textWidth === undefined) {
-			this._textWidth = this._computeTextWidth();
+			this._textWidth = this._computeTextWidthInPixels();
 		}
 		return this._textWidth;
 	}
 
 	_computeTextHeight() {
-		return this.fontSize * (this.lineHeight * (this.linesCount - 1) + 1);
+		return this.lineHeight * (this.linesCount - 1) + 1;
 	}
 
 	get textHeight() {
@@ -242,6 +246,10 @@ let TextTexture = class extends THREE.Texture {
 			this._textHeight = this._computeTextHeight();
 		}
 		return this._textHeight;
+	}
+
+	get textHeightInPixels() {
+		return this.fontSize * this.textHeight;
 	}
 
 	get padding() {
@@ -257,6 +265,18 @@ let TextTexture = class extends THREE.Texture {
 
 	get paddingInPixels() {
 		return this.fontSize * this.padding;
+	}
+
+	get imageWidthInPixels() {
+		return this.textWidthInPixels + 2 * this.paddingInPixels;
+	}
+
+	get imageHeight() {
+		return this.textHeight + 2 * this.padding;
+	}
+
+	get imageHeightInPixels() {
+		return this.textHeightInPixels + 2 * this.paddingInPixels;
 	}
 
 	get aspect() {
