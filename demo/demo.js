@@ -3,7 +3,7 @@
 	let fontStyleValues = ['normal', 'italic'];
 	let fontVariantValues = ['normal', 'small-caps'];
 	let fontWeightValues = ['normal', 'bold'];
-	let fontFamilyValues = ['Finger Paint', 'Bahiana', 'Fredericka the Great', 'Shadows Into Light', 'Quicksand'];
+	let fontFamilyValues = ['Finger Paint', 'Barrio', 'Fredericka the Great', 'Shadows Into Light', 'Quicksand'];
 	let textAlignValues = ['center', 'left', 'right'];
 
 	for (let fontFamily of fontFamilyValues) {
@@ -56,9 +56,9 @@
 		let f = function(value, min, max, step) {
 			return ((value < min || value > max) ? -1 : 1) * step;
 		};
-		let x = 3/1000;
-		let y = 4/1000;
-		let z = 5/1000;
+		let x = 1/800;
+		let y = 1/600;
+		let z = 1/400;
 
 		return function() {
 			mesh.rotation.x += (x = f(mesh.rotation.x, -1/7, 1/3, x));
