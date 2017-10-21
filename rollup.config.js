@@ -5,13 +5,12 @@ import minify from 'rollup-plugin-babel-minify';
 
 export default {
 	input: 'src/THREE.TextTexture.js',
-	external: ['vue', 'three'],
+	external: ['three'],
 	output: {
 		file: 'THREE.TextTexture.js',
 		format: 'umd',
 		name: 'THREE.TextTexture',
 		globals: {
-			'vue': 'Vue',
 			'three': 'THREE',
 		},
 	},
