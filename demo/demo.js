@@ -56,9 +56,9 @@
 		let f = function(value, min, max, step) {
 			return ((value < min || value > max) ? -1 : 1) * step;
 		};
-		let x = 1/1000;
-		let y = 2/1000;
-		let z = 3/1000;
+		let x = 3/1000;
+		let y = 4/1000;
+		let z = 5/1000;
 
 		return function() {
 			mesh.rotation.x += (x = f(mesh.rotation.x, -1/7, 1/3, x));
@@ -79,7 +79,9 @@
 	window.addEventListener('resize', renderScene, false);
 
 	let startToRenderScene = function() {
-		requestAnimationFrame(startToRenderScene);
+		setTimeout(() => {
+			requestAnimationFrame(startToRenderScene);
+		}, 1000/60);
 		renderScene();
 	};
 	startToRenderScene();

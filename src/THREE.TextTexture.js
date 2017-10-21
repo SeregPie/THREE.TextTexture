@@ -2,7 +2,6 @@ import THREE from 'three';
 
 import Canvas_measureText from './helpers/Canvas/measureText';
 
-
 let TextTexture = class extends THREE.Texture {
 	constructor({
 		autoRedraw = true,
