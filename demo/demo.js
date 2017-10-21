@@ -17,7 +17,7 @@
 	let n = 1;
 
 	let renderer = new THREE.WebGLRenderer({antialias: true});
-	renderer.setClearColor(0x588c7e, 1);
+	renderer.setClearColor(0x588c7e);
 	document.body.appendChild(renderer.domElement);
 
 	let scene = new THREE.Scene();
