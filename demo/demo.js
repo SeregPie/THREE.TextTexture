@@ -1,16 +1,23 @@
-(function() {
+(async function() {
 
 	let fontStyleValues = ['normal', 'italic'];
 	let fontVariantValues = ['normal', 'small-caps'];
 	let fontWeightValues = ['normal', 'bold'];
-	let fontFamilyValues = ['serif', 'sans-serif', 'monospace'];
+	let fontFamilyValues = ['Finger Paint', 'Bahiana', 'Fredericka the Great', 'Shadows Into Light', 'Quicksand'];
 	let textAlignValues = ['center', 'left', 'right'];
+
+	for (let fontFamily of fontFamilyValues) {
+		try {
+			await document.fonts.load(`1px ${fontFamily}`, 'a');
+		} catch (error) {
+			// continue regardless of error
+		}
+	}
 
 	let n = 1;
 
 	let renderer = new THREE.WebGLRenderer({antialias: true});
-	//let renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
-	//renderer.setClearColor(0x000000, 0);
+	renderer.setClearColor(0x588c7e, 1);
 	document.body.appendChild(renderer.domElement);
 
 	let scene = new THREE.Scene();
@@ -34,15 +41,15 @@
 	});
 	let material = new THREE.MeshBasicMaterial({
 		map: texture,
-		color: 0xff69b4,
+		color: 0xf2e394,
 		transparent: true,
 	});
-	let geometry = new THREE.PlaneGeometry(n, n, n);
+	let geometry = new THREE.PlaneGeometry(4*n, 4*n, 4*n);
 	let mesh = new THREE.Mesh(geometry, material);
 	scene.add(mesh);
 
 	let updateMeshScale = function() {
-		mesh.scale.set(material.map.aspect, 1, 1);
+		mesh.scale.set(1, 1/material.map.aspect, 1);
 	};
 
 	let rotateMesh = (function() {
@@ -60,21 +67,22 @@
 		};
 	})();
 
-	let render = function() {
+	let renderScene = function() {
 		rotateMesh();
 		updateMeshScale();
 		renderer.setSize(document.body.clientWidth, document.body.clientHeight);
-		camera.aspect = document.body.clientWidth / document.body.clientHeight;
+		camera.aspect = renderer.domElement.clientWidth / renderer.domElement.clientHeight;
 		camera.updateProjectionMatrix();
 		renderer.render(scene, camera);
 	};
 
-	window.addEventListener('resize', render, false);
+	window.addEventListener('resize', renderScene, false);
 
-	(function animate() {
-		requestAnimationFrame(animate);
-		render();
-	})();
+	let startToRenderScene = function() {
+		requestAnimationFrame(startToRenderScene);
+		renderScene();
+	};
+	startToRenderScene();
 
 	let gui = new dat.GUI();
 	gui.add(texture, 'fontStyle', fontStyleValues);
@@ -85,6 +93,7 @@
 	gui.add(texture, 'textAlign', textAlignValues);
 	gui.add(texture, 'lineHeight', 0, 3).step(1/20);
 	gui.add(texture, 'padding', 0, 1).step(1/20);
+	gui.add(material, 'transparent');
 
 	let TextInput = document.getElementById('TextInput');
 	TextInput.value = texture.text;
