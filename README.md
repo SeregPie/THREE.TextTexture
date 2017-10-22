@@ -37,7 +37,7 @@ Include the code in your page via a CDN.
 
 `.constructor({autoRedraw, text, fontStyle, fontVariant, fontWeight, fontSize, fontFamily, textAlign, lineHeight, padding, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
 
-```javascript
+```js
 
 let texture = new THREE.TextTexture({
   text: 'Carpe Diem',
@@ -150,7 +150,7 @@ If `false`, changing properties will **not** redraw the canvas.
 
 Make use of it, if you want to change multiple properties at once. This way you will avoid unnecessary `.redraw()` calls.
 
-```javascript
+```js
 
 texture.autoRedraw = false;
 texture.text = 'Memento Mori';
