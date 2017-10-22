@@ -56,7 +56,7 @@ scene.add(sprite);
 
 `.text = ''`
 
-A string for the text to write on the canvas.
+The text to write on the canvas.
 
 ---
 
@@ -64,37 +64,37 @@ A string for the text to write on the canvas.
 
 *read-only*
 
-An array of the text split by the new line character.
+The text split by the new line character.
 
 ---
 
 `.fontStyle = 'normal'`
 
-A string for the font style. Possible values are `'normal'`, `'italic'` and `'oblique'`.
+The font style of the text. Possible values are `'normal'`, `'italic'` and `'oblique'`.
 
 ---
 
 `.fontVariant = 'normal'`
 
-A string for the font variant. Possible values are `'normal'` and `'small-caps'`.
+The font variant of the text. Possible values are `'normal'` and `'small-caps'`.
 
 ---
 
 `.fontWeight = 'normal'`
 
-A string for the font weight. Possible values are `'normal'`, `'bold'`, `'bolder'`, `'lighter'` and `'100'` to `'900'`.
+The font weight of the text. Possible values are `'normal'`, `'bold'`, `'bolder'`, `'lighter'` and `'100'` to `'900'`.
 
 ---
 
 `.fontSize = 16`
 
-A number for the font size in pixels.
+The font size of the text. The unit for the value is pixel.
 
 ---
 
 `.fontFamily = 'sans-serif'`
 
-A string for the font family.
+The font family of the text.
 
 ---
 
@@ -102,25 +102,25 @@ A string for the font family.
 
 *read-only*
 
-A string for the combined font properties.
+The combined font properties.
 
 ---
 
 `.textAlign = 'center'`
 
-A string for the horizontal alignment of the text lines. Possible values are `'center'`, `'left'` and `'right'`.
+The horizontal alignment of the text lines. Possible values are `'center'`, `'left'` and `'right'`.
 
 ---
 
 `.lineHeight = 1`
 
-A number for the height of a text line. The pixels are calculated relative to the font size.
+The height of a text line. The pixels are calculated relative to the font size.
 
 ---
 
 `.padding = 1/4`
 
-A number for the space around the text of the canvas. The pixels are calculated relative to the font size.
+The space around the text inside the canvas. The pixels are calculated relative to the font size.
 
 ---
 
