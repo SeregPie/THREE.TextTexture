@@ -88,7 +88,7 @@ The font weight of the text. Possible values are `'normal'`, `'bold'`, `'bolder'
 
 `.fontSize = 16`
 
-The font size of the text. The unit for the value is pixel.
+The font size of the text in pixels.
 
 ---
 
