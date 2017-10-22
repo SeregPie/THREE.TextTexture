@@ -33,7 +33,6 @@ let TextTexture = class extends THREE.Texture {
 		this._lines = undefined;
 		this._font = undefined;
 		this._textBoxWidth = undefined;
-		this._textBoxHeight = undefined;
 		*/
 		this.redraw();
 	}
@@ -88,7 +87,6 @@ let TextTexture = class extends THREE.Texture {
 			this._text = value;
 			this._lines = undefined;
 			this._textBoxWidth = undefined;
-			this._textBoxHeight = undefined;
 			this._redrawIfAuto();
 		}
 	}
@@ -159,7 +157,6 @@ let TextTexture = class extends THREE.Texture {
 			this._fontSize = value;
 			this._font = undefined;
 			this._textBoxWidth = undefined;
-			this._textBoxHeight = undefined;
 			this._redrawIfAuto();
 		}
 	}
@@ -212,7 +209,6 @@ let TextTexture = class extends THREE.Texture {
 	set lineHeight(value) {
 		if (this._lineHeight !== value) {
 			this._lineHeight = value;
-			this._textBoxHeight = undefined;
 			this._redrawIfAuto();
 		}
 	}
@@ -236,15 +232,8 @@ let TextTexture = class extends THREE.Texture {
 		return this._textBoxWidth;
 	}
 
-	_computeTextHeight() {
-		return this.lineHeight * (this.linesCount - 1) + 1;
-	}
-
 	get textBoxHeight() {
-		if (this._textBoxHeight === undefined) {
-			this._textBoxHeight = this._computeTextHeight();
-		}
-		return this._textBoxHeight;
+		return this.lineHeight * (this.linesCount - 1) + 1;
 	}
 
 	get textBoxHeightInPixels() {
