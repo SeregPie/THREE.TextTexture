@@ -1,6 +1,7 @@
 import THREE from 'three';
 
 import Canvas_measureText from './helpers/Canvas/measureText';
+import Array_max from './helpers/Array/max';
 
 let TextTexture = class extends THREE.Texture {
 	constructor({
@@ -66,6 +67,10 @@ let TextTexture = class extends THREE.Texture {
 				ctx.fillText(line, left, top);
 				top += this.lineHeightInPixels;
 			}
+			/*this.lines.forEach(line => {
+				ctx.fillText(line, left, top);
+				top += this.lineHeightInPixels;
+			});*/
 		} else {
 			ctx.canvas.width = ctx.canvas.height = 1;
 		}
@@ -218,11 +223,10 @@ let TextTexture = class extends THREE.Texture {
 	}
 
 	_computeTextWidthInPixels() {
-		let returns = 0;
-		for (let line of this.lines) {
-			returns = Math.max(Canvas_measureText(this.font, line).width, returns);
+		if (this.lines.length) {
+			return Array_max(this.lines, line => Canvas_measureText(this.font, line).width);
 		}
-		return returns;
+		return 0;
 	}
 
 	get textBoxWidthInPixels() {
@@ -275,6 +279,6 @@ let TextTexture = class extends THREE.Texture {
 	}
 };
 
-Object.assign(THREE, {TextTexture});
+//Object.assign(THREE, {TextTexture});
 
 export default TextTexture;
