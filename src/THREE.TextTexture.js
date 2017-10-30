@@ -63,14 +63,10 @@ let TextTexture = class extends THREE.Texture {
 					break;
 			}
 			let top = this.paddingInPixels + this.fontSize / 2;
-			for (let line of this.lines) {
+			this.lines.forEach(line => {
 				ctx.fillText(line, left, top);
 				top += this.lineHeightInPixels;
-			}
-			/*this.lines.forEach(line => {
-				ctx.fillText(line, left, top);
-				top += this.lineHeightInPixels;
-			});*/
+			});
 		} else {
 			ctx.canvas.width = ctx.canvas.height = 1;
 		}

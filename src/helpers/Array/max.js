@@ -1,7 +1,7 @@
 export default function(array, iteratee) {
 	let returns = -Infinity;
-	for (let value of array) {
+	array.forEach(value => {
 		returns = Math.max(iteratee(value), returns);
-	}
+	});
 	return returns;
 }
