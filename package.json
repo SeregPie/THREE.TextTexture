@@ -5,7 +5,7 @@
 	"main": "THREE.TextTexture.js",
 	"scripts": {
 		"build": "rollup -c",
-		"watch": "rollup -c -w",
+		"dev": "rollup -c -w",
 		"prepublishOnly": "npm run build"
 	},
 	"repository": {

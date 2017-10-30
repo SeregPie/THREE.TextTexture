@@ -10,7 +10,7 @@
 		.resolve()
 		.then(function() {
 			return Promise.all(fontFamilyValues.map(function(fontFamily) {
-				return document.fonts.load(['1px', fontFamily].join(' '), 'a');
+				return (new FontFaceObserver(fontFamily)).load();
 			}));
 		})
 		.catch(function() {
@@ -56,17 +56,17 @@
 			};
 
 			var rotateMesh = (function() {
-				var f = function(value, min, max, step) {
-					return ((value < min || value > max) ? -1 : 1) * step;
+				var nextStep = function(step, value, minValue, maxValue) {
+					return step * ((value < minValue || value > maxValue) ? -1 : 1);
 				};
 				var x = 1/800;
 				var y = 1/600;
 				var z = 1/400;
 
 				return function() {
-					mesh.rotation.x += (x = f(mesh.rotation.x, -1/7, 1/3, x));
-					mesh.rotation.y += (y = f(mesh.rotation.y, -1/7, 1/3, y));
-					mesh.rotation.z += (z = f(mesh.rotation.z, -1/7, 1/3, z));
+					mesh.rotation.x += (x = nextStep(x, mesh.rotation.x, -1/7, 1/3));
+					mesh.rotation.y += (y = nextStep(y, mesh.rotation.y, -1/7, 1/3));
+					mesh.rotation.z += (z = nextStep(z, mesh.rotation.z, -1/7, 1/3));
 				};
 			})();
 

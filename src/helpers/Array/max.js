@@ -1,7 +1,5 @@
 export default function(array, iteratee) {
-	let returns = -Infinity;
-	array.forEach(value => {
-		returns = Math.max(iteratee(value), returns);
-	});
-	return returns;
+	if (array.length > 0) {
+		return array.map(iteratee).reduce((previousValue, currentValue) => Math.max(previousValue, currentValue));
+	}
 }
