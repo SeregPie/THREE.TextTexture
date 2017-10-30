@@ -43,7 +43,7 @@ body {
 	left: 0;
 	right: 0;
 	bottom: 16px;
-	margin: auto;
+	margin: 0 auto;
 	width: 512px;
 	max-width: 100%;
 	outline: none;
