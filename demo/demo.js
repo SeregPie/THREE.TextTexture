@@ -109,9 +109,9 @@
 				guiFolder.open();
 			})();
 
-			var settings = QuickSettings.create(16, 64, 'settings');
+			var settings = QuickSettings.create(16, 16, ' ');
 			settings.bindTextArea('text', texture['text'], texture);
-			settings.bindDropDown('fontStyle', fontStyleValues, texture);
+			/*settings.bindDropDown('fontStyle', fontStyleValues, texture);
 			settings.bindDropDown('fontVariant', fontVariantValues, texture);
 			settings.bindDropDown('fontWeight', fontWeightValues, texture);
 			settings.bindRange('fontSize', 0, 128, texture['fontSize'], 1, texture);
@@ -119,7 +119,7 @@
 			settings.bindDropDown('textAlign', textAlignValues, texture);
 			settings.bindRange('lineHeight', 0, 3, texture['lineHeight'], 1/20, texture);
 			settings.bindRange('padding', 0, 1, texture['padding'], 1/20, texture);
-			settings.bindBoolean('transparent', material['transparent'], material);
+			settings.bindBoolean('transparent', material['transparent'], material);*/
 		});
 
 })();
