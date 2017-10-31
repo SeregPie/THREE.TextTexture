@@ -36,21 +36,3 @@ body {
 #GitHubLink:hover {
 	opacity: 0.9;
 }
-
-#TextInput {
-	position: absolute;
-	z-index: 1;
-	left: 0;
-	right: 0;
-	bottom: 16px;
-	margin: 0 auto;
-	width: 512px;
-	max-width: 100%;
-	outline: none;
-	border: none;
-	padding: 8px;
-	color: Black;
-	font-family: inherit;
-	font-size: 24px;
-	resize: none;
-}

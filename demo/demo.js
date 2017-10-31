@@ -90,24 +90,36 @@
 			startToRenderScene();
 
 			var gui = new dat.GUI();
-			gui.add(texture, 'fontStyle', fontStyleValues);
-			gui.add(texture, 'fontVariant', fontVariantValues);
-			gui.add(texture, 'fontWeight', fontWeightValues);
-			gui.add(texture, 'fontSize', 0, 128).step(1);
-			gui.add(texture, 'fontFamily', fontFamilyValues);
-			gui.add(texture, 'textAlign', textAlignValues);
-			gui.add(texture, 'lineHeight', 0, 3).step(1/20);
-			gui.add(texture, 'padding', 0, 1).step(1/20);
-			gui.add(material, 'transparent');
+			(function() {
+				var guiFolder = gui.addFolder('texture');
+				//guiFolder.add(texture, 'text');
+				guiFolder.add(texture, 'fontStyle', fontStyleValues);
+				guiFolder.add(texture, 'fontVariant', fontVariantValues);
+				guiFolder.add(texture, 'fontWeight', fontWeightValues);
+				guiFolder.add(texture, 'fontSize', 0, 128, 1);
+				guiFolder.add(texture, 'fontFamily', fontFamilyValues);
+				guiFolder.add(texture, 'textAlign', textAlignValues);
+				guiFolder.add(texture, 'lineHeight', 0, 3, 1/20);
+				guiFolder.add(texture, 'padding', 0, 1, 1/20);
+				guiFolder.open();
+			})();
+			(function() {
+				var guiFolder = gui.addFolder('material');
+				guiFolder.add(material, 'transparent');
+				guiFolder.open();
+			})();
 
-			var TextInput = document.getElementById('TextInput');
-			TextInput.value = texture.text;
-			TextInput.addEventListener('input', function(event) {
-				texture.text = this.value;
-			});
-			TextInput.addEventListener('keydown', function(event) {
-				event.stopPropagation();
-			});
+			var settings = QuickSettings.create(16, 64, 'settings');
+			settings.bindTextArea('text', texture['text'], texture);
+			settings.bindDropDown('fontStyle', fontStyleValues, texture);
+			settings.bindDropDown('fontVariant', fontVariantValues, texture);
+			settings.bindDropDown('fontWeight', fontWeightValues, texture);
+			settings.bindRange('fontSize', 0, 128, texture['fontSize'], 1, texture);
+			settings.bindDropDown('fontFamily', fontFamilyValues, texture);
+			settings.bindDropDown('textAlign', textAlignValues, texture);
+			settings.bindRange('lineHeight', 0, 3, texture['lineHeight'], 1/20, texture);
+			settings.bindRange('padding', 0, 1, texture['padding'], 1/20, texture);
+			settings.bindBoolean('transparent', material['transparent'], material);
 		});
 
 })();
