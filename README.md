@@ -28,9 +28,18 @@ Include the code in your page via a CDN.
 
 ```html
 
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script><!-- to support old browsers -->
 <script src="https://unpkg.com/three"></script>
 <script src="https://unpkg.com/three.texttexture"></script>
+
+```
+
+---
+
+Include [polyfills](https://polyfill.io/) to support older browsers.
+
+```html
+
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 
 ```
 
