@@ -33,8 +33,6 @@ Include the code in your page via a CDN.
 
 ```
 
----
-
 Include [polyfills](https://polyfill.io/) to support older browsers.
 
 ```html
