@@ -15,6 +15,6 @@ export default {
 	},
 	plugins: [
 		buble(),
-		//uglify(),
+		uglify(),
 	],
 };

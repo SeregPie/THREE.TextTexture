@@ -120,13 +120,13 @@ The horizontal alignment of the text lines. Possible values are `'center'`, `'le
 
 ---
 
-`.lineHeight = 1`
+`.lineHeight = 1.15`
 
 The height of a text line. The pixels are calculated relative to the font size.
 
 ---
 
-`.padding = 1/4`
+`.padding = 0.25`
 
 The space around the text inside the canvas. The pixels are calculated relative to the font size.
 
