@@ -1,29 +1,20 @@
-import babel from 'rollup-plugin-babel';
-import minify from 'rollup-plugin-babel-minify';
+import buble from 'rollup-plugin-buble';
+import uglify from 'rollup-plugin-uglify';
+
+let globals = {
+	'three': 'THREE',
+};
 
 export default {
 	input: 'src/THREE.TextTexture.js',
-	external: ['three'],
+	external: Object.keys(globals),
 	output: {
 		file: 'THREE.TextTexture.js',
 		format: 'umd',
-		name: 'THREE.TextTexture',
-		globals: {
-			'three': 'THREE',
-		},
+		globals,
 	},
 	plugins: [
-		babel({
-			presets: [
-				['env', {
-					//debug: true,
-					targets: {
-						browsers: 'last 2 versions',
-					},
-					modules: false,
-				}],
-			],
-		}),
-		minify({comments: false}),
+		buble(),
+		//uglify(),
 	],
 };

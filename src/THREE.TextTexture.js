@@ -3,7 +3,7 @@ import THREE from 'three';
 import Canvas_measureText from './helpers/Canvas/measureText';
 import Array_max from './helpers/Array/max';
 
-export default class extends THREE.Texture {
+let TextTexture = class extends THREE.Texture {
 	constructor({
 		autoRedraw = true,
 		text = '',
@@ -273,4 +273,6 @@ export default class extends THREE.Texture {
 		}
 		return 1;
 	}
-}
+};
+
+THREE.TextTexture = TextTexture;
