@@ -1,7 +1,7 @@
 import THREE from 'three';
 
-import Canvas_measureText from './helpers/Canvas/measureText';
 import Array_max from './helpers/Array/max';
+import Canvas_measureText from './helpers/Canvas/measureText';
 
 THREE.TextTexture = class extends THREE.Texture {
 	constructor({

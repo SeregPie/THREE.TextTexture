@@ -14,7 +14,7 @@
 			}));
 		})
 		.catch(function() {
-			// continue regardless of error
+			// pass
 		})
 		.then(function() {
 			var n = 1;

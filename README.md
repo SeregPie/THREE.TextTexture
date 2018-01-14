@@ -14,39 +14,32 @@ An instance of `TextTexture` is a texture for writing text on the canvas.
 
 ## setup
 
-Install the [package](https://www.npmjs.com/package/three.texttexture) via npm.
+### npm
 
-```sh
-
+```shell
 npm install three.texttexture
+```
 
+### browser
+
+```html
+<script src="https://unpkg.com/three"></script>
+<script src="https://unpkg.com/three.texttexture"></script>
 ```
 
 ---
 
-Include the code in your page via a CDN.
-
-```html
-
-<script src="https://unpkg.com/three"></script>
-<script src="https://unpkg.com/three.texttexture"></script>
-
-```
-
 Include [polyfills](https://polyfill.io/) to support older browsers.
 
 ```html
-
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-
 ```
 
 ## members
 
 `.constructor({autoRedraw, text, fontStyle, fontVariant, fontWeight, fontSize, fontFamily, textAlign, lineHeight, padding, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
 
-```js
-
+```javascript
 let texture = new THREE.TextTexture({
   text: 'Carpe Diem',
   fontStyle: 'italic',
@@ -57,7 +50,6 @@ let material = new THREE.SpriteMaterial({map: texture, color: 0xffffbb});
 let sprite = new THREE.Sprite(material);
 sprite.scale.setX(texture.aspect).multiplyScalar(10);
 scene.add(sprite);
-
 ```
 
 ---
@@ -158,15 +150,13 @@ If `false`, changing properties will **not** redraw the canvas.
 
 Make use of it, if you want to change multiple properties at once. This way you will avoid unnecessary `.redraw()` calls.
 
-```js
-
+```javascript
 texture.autoRedraw = false;
 texture.text = 'Memento Mori';
 texture.fontWeight = 'bold';
 texture.fontSize = 48;
 texture.redraw();
 texture.autoRedraw = true;
-
 ```
 
 ---
@@ -175,7 +165,7 @@ texture.autoRedraw = true;
 
 *read-only*
 
-The width of the canvas devided by the height. If the width or the height is 0, the value is 1.
+The width of the canvas devided by the height. If the width or the height is 0, the value will be 1.
 
 ## see also
 
