@@ -27,14 +27,6 @@ npm install three.texttexture
 <script src="https://unpkg.com/three.texttexture"></script>
 ```
 
----
-
-Include [polyfills](https://polyfill.io/) to support older browsers.
-
-```html
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-```
-
 ## members
 
 `.constructor({autoRedraw, text, fontStyle, fontVariant, fontWeight, fontSize, fontFamily, textAlign, lineHeight, padding, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy})`
