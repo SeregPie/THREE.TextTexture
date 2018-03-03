@@ -87,7 +87,7 @@
 				rotateMesh();
 				updateMeshScale();
 				renderer.setSize(document.body.offsetWidth, document.body.offsetHeight);
-				camera.aspect = renderer.domElement.offsetWidth / renderer.domElement.offsetHeight;
+				camera.aspect = renderer.domElement.width / renderer.domElement.height;
 				camera.updateProjectionMatrix();
 				renderer.render(scene, camera);
 			};
