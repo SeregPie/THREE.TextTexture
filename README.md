@@ -48,7 +48,7 @@ scene.add(sprite);
 
 `.text = ''`
 
-The text to write on the canvas.
+Text to write on the canvas.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
@@ -56,37 +56,37 @@ The text to write on the canvas.
 
 *read-only*
 
-The text split by the new line character.
+Text split by the new line character.
 
 ---
 
 `.fontStyle = 'normal'`
 
-The font style of the text. Possible values are `'normal'`, `'italic'` and `'oblique'`.
+Font style of the text. Possible values are `'normal'`, `'italic'` and `'oblique'`.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.fontVariant = 'normal'`
 
-The font variant of the text. Possible values are `'normal'` and `'small-caps'`.
+Font variant of the text. Possible values are `'normal'` and `'small-caps'`.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.fontWeight = 'normal'`
 
-The font weight of the text. Possible values are `'normal'`, `'bold'`, `'bolder'`, `'lighter'` and `'100'` to `'900'`.
+Font weight of the text. Possible values are `'normal'`, `'bold'`, `'bolder'`, `'lighter'` and `'100'` to `'900'`.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.fontSize = 16`
 
-The font size of the text in pixels.
+Font size of the text in pixels.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.fontFamily = 'sans-serif'`
 
-The font family of the text.
+Font family of the text.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
@@ -94,39 +94,25 @@ The font family of the text.
 
 *read-only*
 
-The combined font properties.
+Combined font properties.
 
 ---
 
 `.textAlign = 'center'`
 
-The horizontal alignment of the text lines. Possible values are `'center'`, `'left'` and `'right'`.
+Horizontal alignment of the text lines. Possible values are `'center'`, `'left'` and `'right'`.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.lineHeight = 1.15`
 
-The height of a text line. The pixels are calculated relative to the font size.
+Height of a text line. The pixels are calculated relative to the font size.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.padding = 0.25`
 
-The space around the text inside the canvas. The pixels are calculated relative to the font size.
-
----
-
-`.text`<br/>
-`.fontStyle`<br/>
-`.fontVariant`<br/>
-`.fontWeight`<br/>
-`.fontSize`<br/>
-`.fontFamily`<br/>
-`.textAlign`<br/>
-`.lineHeight`<br/>
-`.padding`<br/>
-
-Changing the value will redraw the canvas, if `autoRedraw` is `true`.
+Space around the text inside the canvas. The pixels are calculated relative to the font size.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
@@ -140,7 +126,7 @@ Redraws the canvas.
 
 If `false`, changing properties will **not** redraw the canvas.
 
-Make use of it, if you want to change multiple properties at once. This way you will avoid unnecessary `.redraw()` calls.
+Make use of it if you want to change multiple properties at once. This way you will avoid unnecessary `.redraw()` calls.
 
 ```javascript
 texture.autoRedraw = false;
@@ -157,7 +143,7 @@ texture.autoRedraw = true;
 
 *read-only*
 
-The width of the canvas devided by the height. If the width or the height is 0, the value will be 1.
+Width of the canvas devided by the height. If the width or the height is 0, the value will be 1.
 
 ## see also
 

@@ -1,7 +1,9 @@
 import THREE from 'three';
 
-import Array_max from './helpers/Array/max';
-import Canvas_measureText from './helpers/Canvas/measureText';
+import createCanvas from './createCanvas';
+import getFont from './getFont';
+import getLines from './getLines';
+import getTextBoxWidthInPixels from './getTextBoxWidthInPixels';
 
 THREE.TextTexture = class extends THREE.Texture {
 	constructor({
@@ -19,7 +21,7 @@ THREE.TextTexture = class extends THREE.Texture {
 		minFilter = THREE.LinearFilter,
 		mapping, wrapS, wrapT, format, type, anisotropy,
 	} = {}) {
-		super(document.createElement('canvas'), mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
+		super(createCanvas(), mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
 		this.autoRedraw = autoRedraw;
 		this._text = text;
 		this._fontStyle = fontStyle;
@@ -32,8 +34,7 @@ THREE.TextTexture = class extends THREE.Texture {
 		this._padding = padding;
 		/*
 		this._lines = undefined;
-		this._font = undefined;
-		this._textBoxWidth = undefined;
+		this._textBoxWidthInPixels = undefined;
 		*/
 		this.redraw();
 	}
@@ -87,21 +88,14 @@ THREE.TextTexture = class extends THREE.Texture {
 		if (this._text !== value) {
 			this._text = value;
 			this._lines = undefined;
-			this._textBoxWidth = undefined;
+			this._textBoxWidthInPixels = undefined;
 			this._redrawIfAuto();
 		}
 	}
 
-	_computeLines() {
-		if (this.text) {
-			return this.text.split('\n');
-		}
-		return [];
-	}
-
 	get lines() {
 		if (this._lines === undefined) {
-			this._lines = this._computeLines();
+			this._lines = getLines(this.text);
 		}
 		return this._lines;
 	}
@@ -117,8 +111,7 @@ THREE.TextTexture = class extends THREE.Texture {
 	set fontStyle(value) {
 		if (this._fontStyle !== value) {
 			this._fontStyle = value;
-			this._font = undefined;
-			this._textBoxWidth = undefined;
+			this._textBoxWidthInPixels = undefined;
 			this._redrawIfAuto();
 		}
 	}
@@ -130,8 +123,7 @@ THREE.TextTexture = class extends THREE.Texture {
 	set fontVariant(value) {
 		if (this._fontVariant !== value) {
 			this._fontVariant = value;
-			this._font = undefined;
-			this._textBoxWidth = undefined;
+			this._textBoxWidthInPixels = undefined;
 			this._redrawIfAuto();
 		}
 	}
@@ -143,8 +135,7 @@ THREE.TextTexture = class extends THREE.Texture {
 	set fontWeight(value) {
 		if (this._fontWeight !== value) {
 			this._fontWeight = value;
-			this._font = undefined;
-			this._textBoxWidth = undefined;
+			this._textBoxWidthInPixels = undefined;
 			this._redrawIfAuto();
 		}
 	}
@@ -156,8 +147,7 @@ THREE.TextTexture = class extends THREE.Texture {
 	set fontSize(value) {
 		if (this._fontSize !== value) {
 			this._fontSize = value;
-			this._font = undefined;
-			this._textBoxWidth = undefined;
+			this._textBoxWidthInPixels = undefined;
 			this._redrawIfAuto();
 		}
 	}
@@ -169,27 +159,19 @@ THREE.TextTexture = class extends THREE.Texture {
 	set fontFamily(value) {
 		if (this._fontFamily !== value) {
 			this._fontFamily = value;
-			this._font = undefined;
-			this._textBoxWidth = undefined;
+			this._textBoxWidthInPixels = undefined;
 			this._redrawIfAuto();
 		}
 	}
 
-	_computeFont() {
-		return [
+	get font() {
+		return getFont(
 			this.fontStyle,
 			this.fontVariant,
 			this.fontWeight,
-			`${this.fontSize}px`,
+			this.fontSize,
 			this.fontFamily,
-		].join(' ');
-	}
-
-	get font() {
-		if (this._font === undefined) {
-			this._font = this._computeFont();
-		}
-		return this._font;
+		);
 	}
 
 	get textAlign() {
@@ -218,18 +200,14 @@ THREE.TextTexture = class extends THREE.Texture {
 		return this.fontSize * this.lineHeight;
 	}
 
-	_computeTextWidthInPixels() {
-		if (this.lines.length) {
-			return Array_max(this.lines, line => Canvas_measureText(this.font, line).width);
-		}
-		return 0;
-	}
-
 	get textBoxWidthInPixels() {
-		if (this._textBoxWidth === undefined) {
-			this._textBoxWidth = this._computeTextWidthInPixels();
+		if (this._textBoxWidthInPixels === undefined) {
+			this._textBoxWidthInPixels = getTextBoxWidthInPixels(
+				this.lines,
+				this.font,
+			);
 		}
-		return this._textBoxWidth;
+		return this._textBoxWidthInPixels;
 	}
 
 	get textBoxHeight() {

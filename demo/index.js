@@ -1,21 +1,34 @@
 (function() {
 
-	var fontStyleValues = ['normal', 'italic'];
-	var fontVariantValues = ['normal', 'small-caps'];
-	var fontWeightValues = ['normal', 'bold'];
-	var fontFamilyValues = ['Finger Paint', 'Barrio', 'Fredericka the Great', 'Shadows Into Light', 'Quicksand'];
-	var textAlignValues = ['center', 'left', 'right'];
+	var fontStyleValues = [
+		'normal',
+		'italic',
+	];
+	var fontVariantValues = [
+		'normal',
+		'small-caps',
+	];
+	var fontWeightValues = [
+		'normal',
+		'bold',
+	];
+	var fontFamilyValues = [
+		'Finger Paint',
+		'Barrio',
+		'Fredericka the Great',
+		'Shadows Into Light',
+		'Quicksand',
+	];
+	var textAlignValues = [
+		'center',
+		'left',
+		'right',
+	];
 
-	Promise
-		.resolve()
-		.then(function() {
-			return Promise.all(fontFamilyValues.map(function(fontFamily) {
-				return (new FontFaceObserver(fontFamily)).load();
-			}));
-		})
-		.catch(function() {
-			// pass
-		})
+	Promise.all(fontFamilyValues.map(function(fontFamily) {
+		return (new FontFaceObserver(fontFamily)).load();
+	}))
+		.catch(function() {})
 		.then(function() {
 			var n = 1;
 
@@ -73,8 +86,8 @@
 			var renderScene = function() {
 				rotateMesh();
 				updateMeshScale();
-				renderer.setSize(document.body.clientWidth, document.body.clientHeight);
-				camera.aspect = renderer.domElement.clientWidth / renderer.domElement.clientHeight;
+				renderer.setSize(document.body.offsetWidth, document.body.offsetHeight);
+				camera.aspect = renderer.domElement.offsetWidth / renderer.domElement.offsetHeight;
 				camera.updateProjectionMatrix();
 				renderer.render(scene, camera);
 			};
@@ -92,7 +105,7 @@
 			var gui = new dat.GUI();
 			(function() {
 				var guiFolder = gui.addFolder('texture');
-				//guiFolder.add(texture, 'text');
+				//guiFolder.add(texture, 'text', 'multiline');
 				guiFolder.add(texture, 'fontStyle', fontStyleValues);
 				guiFolder.add(texture, 'fontVariant', fontVariantValues);
 				guiFolder.add(texture, 'fontWeight', fontWeightValues);
@@ -111,15 +124,6 @@
 
 			var settings = QuickSettings.create(16, 16, ' ');
 			settings.bindTextArea('text', texture['text'], texture);
-			/*settings.bindDropDown('fontStyle', fontStyleValues, texture);
-			settings.bindDropDown('fontVariant', fontVariantValues, texture);
-			settings.bindDropDown('fontWeight', fontWeightValues, texture);
-			settings.bindRange('fontSize', 0, 128, texture['fontSize'], 1, texture);
-			settings.bindDropDown('fontFamily', fontFamilyValues, texture);
-			settings.bindDropDown('textAlign', textAlignValues, texture);
-			settings.bindRange('lineHeight', 0, 3, texture['lineHeight'], 1/20, texture);
-			settings.bindRange('padding', 0, 1, texture['padding'], 1/20, texture);
-			settings.bindBoolean('transparent', material['transparent'], material);*/
 		});
 
 })();
