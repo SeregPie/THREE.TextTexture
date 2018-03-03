@@ -48,7 +48,9 @@ scene.add(sprite);
 
 `.text = ''`
 
-Text to write on the canvas.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
+The text to write on the canvas.
+
+Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
@@ -56,37 +58,47 @@ Text to write on the canvas.<br/>Changing the value will redraw the canvas if `a
 
 *read-only*
 
-Text split by the new line character.
+The text split by the new line character.
 
 ---
 
 `.fontStyle = 'normal'`
 
-Font style of the text. Possible values are `'normal'`, `'italic'` and `'oblique'`.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
+The font style of the text. Possible values are `'normal'`, `'italic'` and `'oblique'`.
+
+Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.fontVariant = 'normal'`
 
-Font variant of the text. Possible values are `'normal'` and `'small-caps'`.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
+The font variant of the text. Possible values are `'normal'` and `'small-caps'`.
+
+Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.fontWeight = 'normal'`
 
-Font weight of the text. Possible values are `'normal'`, `'bold'`, `'bolder'`, `'lighter'` and `'100'` to `'900'`.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
+The font weight of the text. Possible values are `'normal'`, `'bold'`, `'bolder'`, `'lighter'` and `'100'` to `'900'`.
+
+Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.fontSize = 16`
 
-Font size of the text in pixels.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
+The font size of the text in pixels.
+
+Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.fontFamily = 'sans-serif'`
 
-Font family of the text.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
+The font family of the text.
+
+Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
@@ -94,25 +106,31 @@ Font family of the text.<br/>Changing the value will redraw the canvas if `autoR
 
 *read-only*
 
-Combined font properties.
+The combined font properties.
 
 ---
 
 `.textAlign = 'center'`
 
-Horizontal alignment of the text lines. Possible values are `'center'`, `'left'` and `'right'`.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
+The horizontal alignment of the text lines. Possible values are `'center'`, `'left'` and `'right'`.
+
+Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.lineHeight = 1.15`
 
-Height of a text line. The pixels are calculated relative to the font size.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
+The height of a text line. The pixels are calculated relative to the font size.
+
+Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
 `.padding = 0.25`
 
-Space around the text inside the canvas. The pixels are calculated relative to the font size.<br/>Changing the value will redraw the canvas if `autoRedraw` is `true`.
+The space around the text inside the canvas. The pixels are calculated relative to the font size.
+
+Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
@@ -143,7 +161,7 @@ texture.autoRedraw = true;
 
 *read-only*
 
-Width of the canvas devided by the height. If the width or the height is 0, the value will be 1.
+The width of the canvas devided by the height. If the width or the height is 0, the value will be 1.
 
 ## see also
 
