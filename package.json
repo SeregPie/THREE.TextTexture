@@ -1,6 +1,6 @@
 {
 	"name": "three.texttexture",
-	"version": "18.3.3",
+	"version": "18.3.19",
 	"description": "A texture for writing text on its canvas.",
 	"main": "THREE.TextTexture.js",
 	"scripts": {
