@@ -21,9 +21,9 @@
 		"material",
 		"plugin",
 		"sprite",
-		"three",
 		"text",
-		"texture"
+		"texture",
+		"three"
 	],
 	"author": "Sergej Sintschilin",
 	"license": "MIT",
@@ -32,12 +32,12 @@
 	},
 	"homepage": "https://github.com/SeregPie/THREE.TextTexture#readme",
 	"dependencies": {
-		"three": "^0.90.0"
+		"three": "^0.91.0"
 	},
 	"devDependencies": {
-		"rollup": "^0.56.3",
+		"rollup": "^0.57.1",
 		"rollup-plugin-buble": "^0.19.2",
-		"rollup-plugin-node-resolve": "^3.0.3",
+		"rollup-plugin-node-resolve": "^3.3.0",
 		"rollup-plugin-uglify": "^3.0.0",
 		"x": "github:SeregPie/MyJavaScriptHelpers"
 	}

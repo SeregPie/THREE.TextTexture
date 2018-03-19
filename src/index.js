@@ -3,7 +3,7 @@ import THREE from 'three';
 import createCanvas from './createCanvas';
 import getFont from './getFont';
 import getLines from './getLines';
-import getTextBoxWidthInPixels from './getTextBoxWidthInPixels';
+import getTextBoxWidth from './getTextBoxWidth';
 
 THREE.TextTexture = class extends THREE.Texture {
 	constructor({
@@ -98,10 +98,6 @@ THREE.TextTexture = class extends THREE.Texture {
 			this._lines = getLines(this.text);
 		}
 		return this._lines;
-	}
-
-	get linesCount() {
-		return this.lines.length;
 	}
 
 	get fontStyle() {
@@ -202,7 +198,7 @@ THREE.TextTexture = class extends THREE.Texture {
 
 	get textBoxWidthInPixels() {
 		if (this._textBoxWidthInPixels === undefined) {
-			this._textBoxWidthInPixels = getTextBoxWidthInPixels(
+			this._textBoxWidthInPixels = getTextBoxWidth(
 				this.lines,
 				this.font,
 			);
@@ -211,7 +207,7 @@ THREE.TextTexture = class extends THREE.Texture {
 	}
 
 	get textBoxHeight() {
-		return this.lineHeight * (this.linesCount - 1) + 1;
+		return this.lineHeight * (this.lines.length - 1) + 1;
 	}
 
 	get textBoxHeightInPixels() {
