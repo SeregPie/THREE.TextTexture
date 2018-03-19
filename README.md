@@ -20,12 +20,20 @@ An instance of `TextTexture` is a texture for writing text on the canvas.
 npm install three.texttexture
 ```
 
+### ES module
+
+```javascript
+import TextTexture from 'three.texttexture';
+```
+
 ### browser
 
 ```html
 <script src="https://unpkg.com/three"></script>
 <script src="https://unpkg.com/three.texttexture"></script>
 ```
+
+The class `TextTexture` will be available under the namespace `THREE`.
 
 ## members
 

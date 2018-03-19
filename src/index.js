@@ -1,11 +1,14 @@
-import THREE from 'three';
+import {
+	LinearFilter,
+	Texture,
+} from 'three';
 
 import createCanvas from './createCanvas';
 import getFont from './getFont';
 import getLines from './getLines';
 import getTextBoxWidth from './getTextBoxWidth';
 
-THREE.TextTexture = class extends THREE.Texture {
+export default class extends Texture {
 	constructor({
 		autoRedraw = true,
 		text = '',
@@ -17,8 +20,8 @@ THREE.TextTexture = class extends THREE.Texture {
 		textAlign = 'center',
 		lineHeight = 1.15,
 		padding = 0.25,
-		magFilter = THREE.LinearFilter,
-		minFilter = THREE.LinearFilter,
+		magFilter = LinearFilter,
+		minFilter = LinearFilter,
 		mapping, wrapS, wrapT, format, type, anisotropy,
 	} = {}) {
 		super(createCanvas(), mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
@@ -247,4 +250,4 @@ THREE.TextTexture = class extends THREE.Texture {
 		}
 		return 1;
 	}
-};
+}
