@@ -30,7 +30,6 @@
 	}))
 		.catch(function() {})
 		.then(function() {
-			var n = 1;
 
 			var renderer = new THREE.WebGLRenderer({antialias: true});
 			renderer.setClearColor(0x588c7e);
@@ -39,7 +38,7 @@
 			var scene = new THREE.Scene();
 
 			var camera = new THREE.PerspectiveCamera(75, 1);
-			camera.position.set(0, 0, 3*n);
+			camera.position.set(0, 0, 3);
 
 			var texture = new THREE.TextTexture({
 				text: [
@@ -60,7 +59,7 @@
 				color: 0xf2e394,
 				transparent: true,
 			});
-			var geometry = new THREE.PlaneGeometry(4*n, 4*n, 4*n);
+			var geometry = new THREE.PlaneGeometry(4, 4, 4);
 			var mesh = new THREE.Mesh(geometry, material);
 			scene.add(mesh);
 
@@ -94,13 +93,13 @@
 
 			window.addEventListener('resize', renderScene, false);
 
-			var startToRenderScene = function() {
-				setTimeout(function() {
-					requestAnimationFrame(startToRenderScene);
-				}, 1000/60);
+			var startSceneRenderer = function() {
+				requestAnimationFrame(function() {
+					setTimeout(startSceneRenderer, 1000/60);
+				});
 				renderScene();
 			};
-			startToRenderScene();
+			startSceneRenderer();
 
 			var gui = new dat.GUI();
 			(function() {

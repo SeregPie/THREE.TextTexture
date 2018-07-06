@@ -3,7 +3,9 @@ import {
 	Texture,
 } from 'three';
 
-import createCanvas from './createCanvas';
+import Document_createCanvas from '/utils/Document/createCanvas';
+import Lang_isUndefined from '/utils/Lang/isUndefined';
+
 import getFont from './getFont';
 import getLines from './getLines';
 import getTextBoxWidth from './getTextBoxWidth';
@@ -24,7 +26,7 @@ export default class extends Texture {
 		minFilter = LinearFilter,
 		mapping, wrapS, wrapT, format, type, anisotropy,
 	} = {}) {
-		super(createCanvas(), mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
+		super(Document_createCanvas(), mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
 		this.autoRedraw = autoRedraw;
 		this._text = text;
 		this._fontStyle = fontStyle;
@@ -97,7 +99,7 @@ export default class extends Texture {
 	}
 
 	get lines() {
-		if (this._lines === undefined) {
+		if (Lang_isUndefined(this._lines)) {
 			this._lines = getLines(this.text);
 		}
 		return this._lines;
@@ -200,7 +202,7 @@ export default class extends Texture {
 	}
 
 	get textBoxWidthInPixels() {
-		if (this._textBoxWidthInPixels === undefined) {
+		if (Lang_isUndefined(this._textBoxWidthInPixels)) {
 			this._textBoxWidthInPixels = getTextBoxWidth(
 				this.lines,
 				this.font,

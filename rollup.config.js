@@ -1,8 +1,9 @@
+import {uglify} from 'rollup-plugin-uglify';
 import buble from 'rollup-plugin-buble';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify';
+import path from 'path';
+import resolve from '@seregpie/rollup-plugin-resolve';
 
-import pkg from './package.json';
+import {main} from './package.json';
 
 let globals = {
 	'three': 'THREE',
@@ -12,13 +13,13 @@ export default {
 	input: 'src/index.js',
 	external: Object.keys(globals),
 	output: {
-		file: pkg.main,
+		file: main,
 		format: 'umd',
-		name: 'THREE.TextTexture',
+		name: path.basename(main, path.extname(main)),
 		globals,
 	},
 	plugins: [
-		nodeResolve(),
+		resolve(),
 		buble(),
 		uglify(),
 	],
