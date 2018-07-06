@@ -14,13 +14,13 @@ export default class extends Texture {
 	constructor({
 		autoRedraw = true,
 		text = '',
-		fontStyle = 'normal',
-		fontVariant = 'normal',
-		fontWeight = 'normal',
-		fontSize = 16,
-		fontFamily = 'sans-serif',
 		textAlign = 'center',
 		lineHeight = 1.15,
+		fontFamily = 'sans-serif',
+		fontSize = 16,
+		fontWeight = 'normal',
+		fontVariant = 'normal',
+		fontStyle = 'normal',
 		padding = 0.25,
 		magFilter = LinearFilter,
 		minFilter = LinearFilter,
@@ -29,18 +29,14 @@ export default class extends Texture {
 		super(Document_createCanvas(), mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
 		this.autoRedraw = autoRedraw;
 		this._text = text;
-		this._fontStyle = fontStyle;
-		this._fontVariant = fontVariant;
-		this._fontWeight = fontWeight;
-		this._fontSize = fontSize;
-		this._fontFamily = fontFamily;
 		this._textAlign = textAlign;
 		this._lineHeight = lineHeight;
+		this._fontFamily = fontFamily;
+		this._fontSize = fontSize;
+		this._fontWeight = fontWeight;
+		this._fontVariant = fontVariant;
+		this._fontStyle = fontStyle;
 		this._padding = padding;
-		/*
-		this._lines = undefined;
-		this._textBoxWidthInPixels = undefined;
-		*/
 		this.redraw();
 	}
 
@@ -52,7 +48,7 @@ export default class extends Texture {
 			ctx.canvas.height = this.paddingBoxHeightInPixels;
 			ctx.font = this.font;
 			ctx.textBaseline = 'middle';
-			ctx.fillStyle = 'white';
+			ctx.fillStyle = 'White';
 			let left;
 			switch (this.textAlign) {
 				case 'left':
@@ -98,6 +94,17 @@ export default class extends Texture {
 		}
 	}
 
+	get textAlign() {
+		return this._textAlign;
+	}
+
+	set textAlign(value) {
+		if (this._textAlign !== value) {
+			this._textAlign = value;
+			this._redrawIfAuto();
+		}
+	}
+
 	get lines() {
 		if (Lang_isUndefined(this._lines)) {
 			this._lines = getLines(this.text);
@@ -105,37 +112,28 @@ export default class extends Texture {
 		return this._lines;
 	}
 
-	get fontStyle() {
-		return this._fontStyle;
+	get lineHeight() {
+		return this._lineHeight;
 	}
 
-	set fontStyle(value) {
-		if (this._fontStyle !== value) {
-			this._fontStyle = value;
-			this._textBoxWidthInPixels = undefined;
+	set lineHeight(value) {
+		if (this._lineHeight !== value) {
+			this._lineHeight = value;
 			this._redrawIfAuto();
 		}
 	}
 
-	get fontVariant() {
-		return this._fontVariant;
+	get lineHeightInPixels() {
+		return this.fontSize * this.lineHeight;
 	}
 
-	set fontVariant(value) {
-		if (this._fontVariant !== value) {
-			this._fontVariant = value;
-			this._textBoxWidthInPixels = undefined;
-			this._redrawIfAuto();
-		}
+	get fontFamily() {
+		return this._fontFamily;
 	}
 
-	get fontWeight() {
-		return this._fontWeight;
-	}
-
-	set fontWeight(value) {
-		if (this._fontWeight !== value) {
-			this._fontWeight = value;
+	set fontFamily(value) {
+		if (this._fontFamily !== value) {
+			this._fontFamily = value;
 			this._textBoxWidthInPixels = undefined;
 			this._redrawIfAuto();
 		}
@@ -153,13 +151,37 @@ export default class extends Texture {
 		}
 	}
 
-	get fontFamily() {
-		return this._fontFamily;
+	get fontWeight() {
+		return this._fontWeight;
 	}
 
-	set fontFamily(value) {
-		if (this._fontFamily !== value) {
-			this._fontFamily = value;
+	set fontWeight(value) {
+		if (this._fontWeight !== value) {
+			this._fontWeight = value;
+			this._textBoxWidthInPixels = undefined;
+			this._redrawIfAuto();
+		}
+	}
+
+	get fontVariant() {
+		return this._fontVariant;
+	}
+
+	set fontVariant(value) {
+		if (this._fontVariant !== value) {
+			this._fontVariant = value;
+			this._textBoxWidthInPixels = undefined;
+			this._redrawIfAuto();
+		}
+	}
+
+	get fontStyle() {
+		return this._fontStyle;
+	}
+
+	set fontStyle(value) {
+		if (this._fontStyle !== value) {
+			this._fontStyle = value;
 			this._textBoxWidthInPixels = undefined;
 			this._redrawIfAuto();
 		}
@@ -173,32 +195,6 @@ export default class extends Texture {
 			this.fontSize,
 			this.fontFamily,
 		);
-	}
-
-	get textAlign() {
-		return this._textAlign;
-	}
-
-	set textAlign(value) {
-		if (this._textAlign !== value) {
-			this._textAlign = value;
-			this._redrawIfAuto();
-		}
-	}
-
-	get lineHeight() {
-		return this._lineHeight;
-	}
-
-	set lineHeight(value) {
-		if (this._lineHeight !== value) {
-			this._lineHeight = value;
-			this._redrawIfAuto();
-		}
-	}
-
-	get lineHeightInPixels() {
-		return this.fontSize * this.lineHeight;
 	}
 
 	get textBoxWidthInPixels() {

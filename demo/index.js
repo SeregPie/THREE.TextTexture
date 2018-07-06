@@ -1,16 +1,9 @@
 (function() {
 
-	var fontStyleValues = [
-		'normal',
-		'italic',
-	];
-	var fontVariantValues = [
-		'normal',
-		'small-caps',
-	];
-	var fontWeightValues = [
-		'normal',
-		'bold',
+	var textAlignValues = [
+		'center',
+		'left',
+		'right',
 	];
 	var fontFamilyValues = [
 		'Finger Paint',
@@ -19,10 +12,17 @@
 		'Shadows Into Light',
 		'Quicksand',
 	];
-	var textAlignValues = [
-		'center',
-		'left',
-		'right',
+	var fontWeightValues = [
+		'normal',
+		'bold',
+	];
+	var fontVariantValues = [
+		'normal',
+		'small-caps',
+	];
+	var fontStyleValues = [
+		'normal',
+		'italic',
 	];
 
 	Promise.all(fontFamilyValues.map(function(fontFamily) {
@@ -47,12 +47,12 @@
 					'Up above the world so high,',
 					'Like a diamond in the sky.',
 				].join('\n'),
-				fontStyle: fontStyleValues[0],
-				fontVariant: fontVariantValues[0],
-				fontWeight: fontWeightValues[0],
-				fontSize: 32,
-				fontFamily: fontFamilyValues[0],
 				textAlign: textAlignValues[0],
+				fontFamily: fontFamilyValues[0],
+				fontSize: 32,
+				fontWeight: fontWeightValues[0],
+				fontVariant: fontVariantValues[0],
+				fontStyle: fontStyleValues[0],
 			});
 			var material = new THREE.MeshBasicMaterial({
 				map: texture,
