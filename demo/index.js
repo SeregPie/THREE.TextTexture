@@ -24,6 +24,13 @@
 		'normal',
 		'italic',
 	];
+	var strokeStyleValues = [
+		'red',
+		'blue',
+		'green',
+		'pink',
+		'greem',
+	]
 
 	Promise.all(fontFamilyValues.map(function(fontFamily) {
 		return (new FontFaceObserver(fontFamily)).load();
@@ -53,6 +60,8 @@
 				fontWeight: fontWeightValues[0],
 				fontVariant: fontVariantValues[0],
 				fontStyle: fontStyleValues[0],
+				strokeStyle: strokeStyleValues[0],
+				outlineWidth:2,
 			});
 			var material = new THREE.MeshBasicMaterial({
 				map: texture,
@@ -113,6 +122,8 @@
 				guiFolder.add(texture, 'textAlign', textAlignValues);
 				guiFolder.add(texture, 'lineHeight', 0, 3, 1/20);
 				guiFolder.add(texture, 'padding', 0, 1, 1/20);
+				guiFolder.add(texture, 'strokeStyle', strokeStyleValues);
+				guiFolder.add(texture, 'outlineWidth', 0, 10, 0.5);
 				guiFolder.open();
 			})();
 			(function() {

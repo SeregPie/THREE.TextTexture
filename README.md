@@ -45,6 +45,8 @@ let texture = new THREE.TextTexture({
   fontFamily: '"Times New Roman", Times, serif',
   fontSize: 32,
   fontStyle: 'italic',
+  strokeStyle: 'orange',
+  outlineWidth: 2,
 });
 let material = new THREE.SpriteMaterial({map: texture, color: 0xffffbb});
 let sprite = new THREE.Sprite(material);
@@ -139,6 +141,18 @@ The combined font properties.
 The space around the text inside the canvas. The pixels are calculated relative to the font size.
 
 Changing the value will redraw the canvas if `autoRedraw` is `true`.
+
+---
+
+`strokeStyle = 'white'`
+
+The color of the outline
+
+---
+
+`outlineWidth = 0`
+
+The width of the outline
 
 ---
 
