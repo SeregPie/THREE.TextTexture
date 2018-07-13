@@ -21,7 +21,8 @@ export default class extends Texture {
 		fontWeight = 'normal',
 		fontVariant = 'normal',
 		fontStyle = 'normal',
-		strokeStyle = 'white',
+		strokeStyle = 'black',
+		fillStyle = 'white',
 		outlineWidth = 0,
 		padding = 0.25,
 		magFilter = LinearFilter,
@@ -40,6 +41,7 @@ export default class extends Texture {
 		this._fontStyle = fontStyle;
 		this._padding = padding;
 		this._strokeStyle = strokeStyle;
+		this._fillStyle = fillStyle;
 		this._outlineWidth = outlineWidth;
 		this.redraw();
 	}
@@ -71,6 +73,7 @@ export default class extends Texture {
 			let top = this.paddingInPixels + this.fontSize / 2;
 			ctx.strokeStyle = this.strokeStyle
 			ctx.lineWidth = this.outlineWidth
+			ctx.fillStyle = this.fillStyle
 			this.lines.forEach(line => {
 				ctx.strokeText(line, left, top)
 				ctx.fillText(line, left, top);
@@ -242,6 +245,17 @@ export default class extends Texture {
 
 	get strokeStyle() {
 		return this._strokeStyle
+	}
+
+	set fillStyle(value) {
+		if(this._fillStyle !== value) {
+			this._fillStyle = value;
+			this._redrawIfAuto();
+		}
+	}
+
+	get fillStyle() {
+		return this._fillStyle
 	}
 
 	set outlineWidth(value) {

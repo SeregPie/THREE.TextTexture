@@ -144,7 +144,7 @@ Changing the value will redraw the canvas if `autoRedraw` is `true`.
 
 ---
 
-`strokeStyle = 'white'`
+`strokeStyle = 'black`
 
 The color of the outline
 
@@ -153,6 +153,12 @@ The color of the outline
 `outlineWidth = 0`
 
 The width of the outline
+
+---
+
+`fillStyle = 'white'`
+
+This is the base color of the text before the material color
 
 ---
 
