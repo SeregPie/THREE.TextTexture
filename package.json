@@ -1,0 +1,38 @@
+{
+	"name": "@seregpie/three.text-texture",
+	"version": "1.1.0",
+	"description": "A texture with the drawn text.",
+	"keywords": [
+		"3d",
+		"canvas",
+		"class",
+		"font",
+		"image",
+		"material",
+		"mesh",
+		"plugin",
+		"sprite",
+		"text",
+		"texture",
+		"three"
+	],
+	"license": "MIT",
+	"author": "Sergej Sintschilin <seregpie@gmail.com>",
+	"files": [],
+	"main": "index.js",
+	"repository": "github:SeregPie/THREE.TextTexture",
+	"scripts": {
+		"build": "rollup -c",
+		"dev": "rollup -c -w",
+		"prepublishOnly": "npm run build"
+	},
+	"devDependencies": {
+		"rollup": "^1.24.0",
+		"rollup-plugin-buble": "^0.19.8",
+		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-terser": "^5.1.2"
+	},
+	"peerDependencies": {
+		"three": ">=0.86"
+	}
+}
