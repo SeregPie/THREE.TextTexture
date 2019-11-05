@@ -1,7 +1,11 @@
-import computeOptimalFontSize from './computeOptimalFontSize';
+import computeAndSetOptimalScale from './computeAndSetOptimalScale';
+import computeOptimalScale from './computeOptimalScale';
 import isTextTexture from './isTextTexture';
+import redraw from './redraw';
 
 export default {
-	computeOptimalFontSize,
+	computeAndSetOptimalScale,
+	computeOptimalScale,
 	isTextTexture,
+	redraw,
 };

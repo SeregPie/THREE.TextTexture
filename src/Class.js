@@ -1,18 +1,11 @@
-import {
-	LinearFilter,
-	Texture,
-} from 'three';
+import * as THREE from 'three';
 
-import AsyncFunction_throttle from './core/AsyncFunction/throttle';
+import Array_prototype_max from './core/Array/prototype/max';
+import CSS_font from './core/CSS/font';
 
-import _createCanvas from './classPrototypeMembers/createCanvas';
-import _loadFontFace from './classPrototypeMembers/loadFontFace';
-import _redraw from './classPrototypeMembers/redraw';
-
-export default class extends Texture {
+export default class extends THREE.Texture {
 	constructor({
 		align = 'center',
-		createCanvas = _createCanvas,
 		fillStyle = '#fff',
 		fontFamily = 'sans-serif',
 		fontSize = 16,
@@ -20,19 +13,18 @@ export default class extends Texture {
 		fontVariant = 'normal',
 		fontWeight = 'normal',
 		lineGap = 0.15,
-		loadFontFace = _loadFontFace,
 		padding = 0.25,
 		strokeStyle = '#000',
 		strokeWidth = 0,
 		text = '',
 	} = {}) {
 		super(
-			createCanvas(),
+			document.createElement('canvas'),
 			undefined,
 			undefined,
 			undefined,
-			LinearFilter,
-			LinearFilter,
+			THREE.LinearFilter,
+			THREE.LinearFilter,
 		);
 		Object.assign(this, {
 			_align: align,
@@ -44,15 +36,12 @@ export default class extends Texture {
 			_fontWeight: fontWeight,
 			_lineGap: lineGap,
 			_padding: padding,
+			_scale: 1,
 			_strokeStyle: strokeStyle,
 			_strokeWidth: strokeWidth,
 			_text: text,
-			createCanvas,
-			loadFontFace,
 			needsRedraw: true,
-			redraw: AsyncFunction_throttle(_redraw, 1),
 		});
-		this.redraw();
 	}
 
 	get lines() {
@@ -60,18 +49,57 @@ export default class extends Texture {
 		return text ? text.split('\n') : [];
 	}
 
-	get height() {
+	get textWidth() {
 		let {
+			fontFamily,
+			fontSize,
+			fontStyle,
+			fontVariant,
+			fontWeight,
+			lines,
+		} = this;
+		if (lines.length) {
+			let canvas = document.createElement('canvas');
+			let context = canvas.getContext('2d');
+			context.font = CSS_font(fontFamily, fontSize, fontStyle, fontVariant, fontWeight);
+			return Array_prototype_max(lines.map(text => context.measureText(text).width));
+		}
+		return 0;
+	}
+
+	get textHeight() {
+		let {
+			fontSize,
 			lineGap,
 			lines,
+		} = this;
+		if (lines.length) {
+			return (lines.length + lineGap * (lines.length - 1)) * fontSize;
+		}
+		return 0;
+	}
+
+	get width() {
+		let {
+			fontSize,
 			padding,
 			strokeWidth,
+			textWidth,
 		} = this;
 		padding += strokeWidth / 2;
-		let height = padding * 2;
-		if (lines.length) {
-			height += lines.length + lineGap * (lines.length - 1);
-		}
-		return height;
+		padding *= fontSize;
+		return padding * 2 + textWidth;
+	}
+
+	get height() {
+		let {
+			fontSize,
+			padding,
+			strokeWidth,
+			textHeight,
+		} = this;
+		padding += strokeWidth / 2;
+		padding *= fontSize;
+		return padding * 2 + textHeight;
 	}
 }

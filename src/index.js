@@ -13,6 +13,7 @@ Object.entries({
 	_fontWeight: 'fontWeight',
 	_lineGap: 'lineGap',
 	_padding: 'padding',
+	_scale: 'scale',
 	_strokeStyle: 'strokeStyle',
 	_strokeWidth: 'strokeWidth',
 	_text: 'text',
@@ -25,7 +26,6 @@ Object.entries({
 			if (this[privateProperty] !== value) {
 				this[privateProperty] = value;
 				this.needsRedraw = true;
-				this.redraw();
 			}
 		},
 	});

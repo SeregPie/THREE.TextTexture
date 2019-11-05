@@ -45,7 +45,7 @@ let texture = new THREE.TextTexture({
 let material = new THREE.SpriteMaterial({map: texture});
 let sprite = new THREE.Sprite(material);
 let spriteScale = 10;
-await texture.redraw();
+texture.redraw();
 sprite.scale
   .set(texture.image.width / texture.image.height, 1, 1)
   .multiplyScalar(spriteScale);
@@ -64,7 +64,7 @@ texture.text = [
   'Then you show your little light,',
   'Twinkle, twinkle, through the night.',
 ].join('\n');
-await texture.redraw();
+texture.redraw();
 sprite.scale
   .set(texture.image.width / texture.image.height, 1, 1)
   .multiplyScalar(spriteScale);
@@ -77,7 +77,6 @@ sprite.scale
 ```
 new THREE.TextTexture({
   align: 'center',
-  createCanvas() { /*...*/ },
   fillStyle: '#fff',
   fontFamily: 'sans-serif',
   fontSize: 16,
@@ -85,7 +84,6 @@ new THREE.TextTexture({
   fontVariant: 'normal',
   fontWeight: 'normal',
   lineGap: 0.15,
-  loadFontFace(family, style, variant, weight) { /*...*/ },
   padding: 0.25,
   strokeStyle: '#000',
   strokeWidth: 0,
@@ -96,7 +94,6 @@ new THREE.TextTexture({
 | argument | description |
 | ---: | :--- |
 | `align` | The horizontal text alignment. Possible values are `'center'`, `'left'` and `'right'`. |
-| `createCanvas` | A function to create a new `Canvas` instance. |
 | `fillStyle` | The fill color or style. |
 | `fontFamily` | The font family. |
 | `fontSize` | The font size. |
@@ -104,27 +101,22 @@ new THREE.TextTexture({
 | `fontVariant` | The font variant. |
 | `fontWeight` | The font weight. |
 | `lineGap` | The vertical distance between the text lines. The value is relative to the font size. |
-| `loadFontFace` | A function to load a font face. |
 | `padding` | The space around the text. The value is relative to the font size. |
 | `strokeStyle` | The stroke color or style. |
 | `strokeWidth` | The stroke width. The value is relative to the font size. |
 | `text` | The text. |
-
----
-
-Provide a custom `loadFontFace` function to support the older browsers.
-
-```javascript
-loadFontFace(family, style, variant, weight) {
-  return (new FontFaceObserver(family, {style, weight})).load();
-}
-```
 
 ### properties
 
 `.isTextTexture = true`
 
 Used to check whether this is an instance of `TextTexture`.
+
+---
+
+`.scale = 1`
+
+The scaling factor.
 
 ---
 
@@ -152,10 +144,6 @@ Used to check whether this is an instance of `TextTexture`.
 
 `.padding`
 
-`.createCanvas`
-
-`.loadFontFace`
-
 ---
 
 `.lines`
@@ -166,33 +154,46 @@ The text splitted by the newline character.
 
 ---
 
+`.width`
+
+*read-only*
+
+The width.
+
+---
+
 `.height`
 
 *read-only*
 
-The image height. The value is relative to the font size.
+The height.
 
 ### methods
 
 `.redraw()`
 
-Waits until the image is redrawn. The method is throttled and is called when the dependent properties are changed.
-
-Returns a `Promise` that resolves when the image is redrawn.
+Redraws the image.
 
 ---
 
-`.computeOptimalFontSize(object, renderer, camera)`
+`.computeOptimalScale(object, renderer, camera, needsPowerOfTwo = false)`
 
-Computes the optimal font size depending on the distance of the object to the camera and the size of the renderer DOM element.
+Computes the optimal scaling factor depending on the distance of the object to the camera and the size of the renderer DOM element.
 
 | argument | description |
 | ---: | :--- |
 | `object` | An instance of `THREE.Object3D`. |
 | `renderer` | An instance with a `domElement` property. |
 | `camera` | An instance of `THREE.Camera`. |
+| `needsPowerOfTwo` | If `true`, the scaling factor is rounded to the power of two. |
 
-Returns the computed font size.
+Returns the computed scaling factor.
+
+---
+
+`.computeAndSetOptimalScale(...args)`
+
+Sets `scale` to the value returned by the function `computeOptimalScale`.
 
 ## see also
 
