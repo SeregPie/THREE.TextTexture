@@ -114,12 +114,6 @@ Used to check whether this is an instance of `TextTexture`.
 
 ---
 
-`.scale = 1`
-
-The scaling factor.
-
----
-
 `.text`
 
 `.fontFamily`
@@ -158,7 +152,7 @@ The text splitted by the newline character.
 
 *read-only*
 
-The width.
+The width. The value is relative to the font size.
 
 ---
 
@@ -166,7 +160,7 @@ The width.
 
 *read-only*
 
-The height.
+The height. The value is relative to the font size.
 
 ### methods
 
@@ -176,24 +170,24 @@ Redraws the image.
 
 ---
 
-`.computeOptimalScale(object, renderer, camera, needsPowerOfTwo = false)`
+`.computeOptimalFontSize(object, renderer, camera, needsPowerOfTwo = false)`
 
-Computes the optimal scaling factor depending on the distance of the object to the camera and the size of the renderer DOM element.
+Computes the optimal font size depending on the distance of the object to the camera and the size of the renderer DOM element.
 
 | argument | description |
 | ---: | :--- |
 | `object` | An instance of `THREE.Object3D`. |
 | `renderer` | An instance with a `domElement` property. |
 | `camera` | An instance of `THREE.Camera`. |
-| `needsPowerOfTwo` | If `true`, the scaling factor is rounded to the power of two. |
+| `needsPowerOfTwo` | If `true`, the font size is rounded to the power of two. |
 
-Returns the computed scaling factor.
+Returns the computed font size.
 
 ---
 
-`.computeAndSetOptimalScale(...args)`
+`.computeAndSetOptimalFontSize(...args)`
 
-Sets `scale` to the value returned by the function `computeOptimalScale`.
+Sets `fontSize` to the value returned by the function `computeOptimalFontSize`.
 
 ## see also
 

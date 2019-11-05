@@ -36,7 +36,6 @@ export default class extends THREE.Texture {
 			_fontWeight: fontWeight,
 			_lineGap: lineGap,
 			_padding: padding,
-			_scale: 1,
 			_strokeStyle: strokeStyle,
 			_strokeWidth: strokeWidth,
 			_text: text,
@@ -52,7 +51,6 @@ export default class extends THREE.Texture {
 	get textWidth() {
 		let {
 			fontFamily,
-			fontSize,
 			fontStyle,
 			fontVariant,
 			fontWeight,
@@ -61,7 +59,7 @@ export default class extends THREE.Texture {
 		if (lines.length) {
 			let canvas = document.createElement('canvas');
 			let context = canvas.getContext('2d');
-			context.font = CSS_font(fontFamily, fontSize, fontStyle, fontVariant, fontWeight);
+			context.font = CSS_font(fontFamily, 1, fontStyle, fontVariant, fontWeight);
 			return Array_prototype_max(lines.map(text => context.measureText(text).width));
 		}
 		return 0;
@@ -69,37 +67,32 @@ export default class extends THREE.Texture {
 
 	get textHeight() {
 		let {
-			fontSize,
 			lineGap,
 			lines,
 		} = this;
 		if (lines.length) {
-			return (lines.length + lineGap * (lines.length - 1)) * fontSize;
+			return lines.length + lineGap * (lines.length - 1);
 		}
 		return 0;
 	}
 
 	get width() {
 		let {
-			fontSize,
 			padding,
 			strokeWidth,
 			textWidth,
 		} = this;
 		padding += strokeWidth / 2;
-		padding *= fontSize;
 		return padding * 2 + textWidth;
 	}
 
 	get height() {
 		let {
-			fontSize,
 			padding,
 			strokeWidth,
 			textHeight,
 		} = this;
 		padding += strokeWidth / 2;
-		padding *= fontSize;
 		return padding * 2 + textHeight;
 	}
 }

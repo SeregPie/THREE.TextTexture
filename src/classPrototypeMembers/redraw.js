@@ -6,14 +6,14 @@ export default function() {
 		let {image} = this;
 		if (image) {
 			let {
+				fontSize,
 				height,
-				scale,
 				width,
 			} = this;
 			let context = image.getContext('2d');
 			context.clearRect(0, 0, image.width, image.height);
-			width *= scale;
-			height *= scale;
+			width *= fontSize;
+			height *= fontSize;
 			if (width && height) {
 				image.width = width;
 				image.height = height;
@@ -21,7 +21,6 @@ export default function() {
 					align,
 					fillStyle,
 					fontFamily,
-					fontSize,
 					fontStyle,
 					fontVariant,
 					fontWeight,
@@ -32,7 +31,6 @@ export default function() {
 					strokeWidth,
 				} = this;
 				padding += strokeWidth / 2;
-				fontSize *= scale;
 				strokeWidth *= fontSize;
 				lineGap *= fontSize;
 				padding *= fontSize;

@@ -22,19 +22,19 @@ export default function(object, renderer, camera, needsPowerOfTwo) {
 		}
 		if (distance) {
 			object.getWorldScale(objectScale);
-			let scale = objectScale.y * renderer.domElement.offsetHeight / distance / height;
+			let fontSize = objectScale.y * renderer.domElement.offsetHeight / distance / height;
 			if (needsPowerOfTwo) {
-				scale = THREE.Math.ceilPowerOfTwo(scale);
+				fontSize = THREE.Math.ceilPowerOfTwo(fontSize);
 			}
-			width *= scale;
-			height *= scale;
+			width *= fontSize;
+			height *= fontSize;
 			if (width > maxSize || height > maxSize) {
-				scale *= maxSize / Math.max(width, height);
+				fontSize *= maxSize / Math.max(width, height);
 				if (needsPowerOfTwo) {
-					scale = THREE.Math.floorPowerOfTwo(scale);
+					fontSize = THREE.Math.floorPowerOfTwo(fontSize);
 				}
 			}
-			return scale;
+			return fontSize;
 		}
 	}
 	return 0;
