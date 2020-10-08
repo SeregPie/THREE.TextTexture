@@ -31,7 +31,7 @@ The class is globally available as `THREE.TextTexture`.
 
 ```javascript
 let texture = new THREE.TextTexture({
-  fillStyle: '#24ff00',
+  colo: '#24ff00',
   fontFamily: '"Times New Roman", Times, serif',
   fontSize: 32,
   fontStyle: 'italic',

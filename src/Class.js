@@ -1,23 +1,36 @@
 import * as THREE from 'three';
 
-import Array_prototype_max from './core/Array/prototype/max';
-import CSS_font from './core/CSS/font';
-
-export default class extends THREE.Texture {
+let Class = class extends THREE.Texture {
 	constructor({
-		align = 'center',
-		fillStyle = '#fff',
+		alignment = 'center',
+		color = '#fff',
 		fontFamily = 'sans-serif',
 		fontSize = 16,
 		fontStyle = 'normal',
 		fontVariant = 'normal',
 		fontWeight = 'normal',
-		lineGap = 0.15,
-		padding = 0.25,
-		strokeStyle = '#000',
+		lineGap = 1/2,
+		padding = 1,
+		strokeColor = '#fff',
 		strokeWidth = 0,
 		text = '',
+
+		align,
+		fillStyle,
+		strokeStyle,
 	} = {}) {
+		if (align !== undefined) {
+			warnOnce();
+			alignment = align;
+		}
+		if (fillStyle !== undefined) {
+			warnOnce();
+			color = fillStyle;
+		}
+		if (strokeStyle !== undefined) {
+			warnOnce();
+			strokeColor = strokeStyle;
+		}
 		super(
 			document.createElement('canvas'),
 			undefined,
@@ -27,8 +40,8 @@ export default class extends THREE.Texture {
 			THREE.LinearFilter,
 		);
 		Object.assign(this, {
-			_align: align,
-			_fillStyle: fillStyle,
+			_alignment: alignment,
+			_color: color,
 			_fontFamily: fontFamily,
 			_fontSize: fontSize,
 			_fontStyle: fontStyle,
@@ -36,63 +49,113 @@ export default class extends THREE.Texture {
 			_fontWeight: fontWeight,
 			_lineGap: lineGap,
 			_padding: padding,
-			_strokeStyle: strokeStyle,
+			_strokeColor: strokeColor,
 			_strokeWidth: strokeWidth,
 			_text: text,
 			needsRedraw: true,
 		});
 	}
 
-	get lines() {
-		let {text} = this;
-		return text ? text.split('\n') : [];
-	}
-
-	get textWidth() {
+	aaaa() {
 		let {
+			alignment,
+			color,
 			fontFamily,
+			fontSize,
 			fontStyle,
 			fontVariant,
 			fontWeight,
-			lines,
-		} = this;
-		if (lines.length) {
-			let canvas = document.createElement('canvas');
-			let context = canvas.getContext('2d');
-			context.font = CSS_font(fontFamily, 1, fontStyle, fontVariant, fontWeight);
-			return Array_prototype_max(lines.map(text => context.measureText(text).width));
-		}
-		return 0;
-	}
-
-	get textHeight() {
-		let {
 			lineGap,
-			lines,
-		} = this;
-		if (lines.length) {
-			return lines.length + lineGap * (lines.length - 1);
-		}
-		return 0;
-	}
-
-	get width() {
-		let {
 			padding,
+			strokeColor,
 			strokeWidth,
-			textWidth,
+			text,
 		} = this;
-		padding += strokeWidth / 2;
-		return padding * 2 + textWidth;
+		padding *= fontSize;
+		lineGap *= fontSize;
+		strokeWidth *= fontSize;
+		let lines = text ? text.split('\n') : [];
+		let {length: linesCount} = lines;
+		let lineOffset = lineGap + fontSize;
+		let textWidth = (linesCount
+			? (() => {
+				let canvas = document.createElement('canvas');
+				let ctx = canvas.getContext('2d');
+				ctx.font = font;
+				return Math.max(...lines.map(text => ctx.measureText(text).width))
+			})()
+			: 0
+		);
+		let textHeight = linesCount ? (fontSize + lineOffset * (linesCount - 1)) : 0;
+		let textOffset = padding + strokeWidth / 2;
+		let width = textWidth + textOffset * 2;
+		let height = textHeight + textOffset * 2;
+		let left;
+		let top = textOffset + fontSize / 2;
+		let result = this.blank(width, height);
+		({
+			width,
+			height,
+		} = result);
+		let {ctx} = result;
+		ctx.save();
+		Object.assign(ctx, {
+			fillStyle: color,
+			font: font.toCSS(),
+			lineWidth: strokeWidth,
+			miterLimit: 1,
+			strokeStyle: strokeColor,
+			textAlign: (() => {
+				switch (alignment) {
+					case 'left':
+						left = textOffset;
+						return 'left';
+					case 'right':
+						left = width - textOffset;
+						return 'right';
+				}
+				left = width / 2;
+				return 'center';
+			})(),
+			textBaseline:  'middle',
+		});
+		lines.forEach(text => {
+			ctx.fillText(text, left, top);
+			if (strokeWidth) {
+				ctx.strokeText(text, left, top);
+			}
+			top += lineOffset;
+		});
+		ctx.restore();
 	}
+};
 
-	get height() {
-		let {
-			padding,
-			strokeWidth,
-			textHeight,
-		} = this;
-		padding += strokeWidth / 2;
-		return padding * 2 + textHeight;
-	}
-}
+[
+	'alignment',
+	'color',
+	'fontFamily',
+	'fontSize',
+	'fontStyle',
+	'fontVariant',
+	'fontWeight',
+	'lineGap',
+	'padding',
+	'strokeStyleColor',
+	'strokeWidth',
+	'text',
+].forEach(publicProperty => {
+	let privateProperty = `_${publicProperty}`;
+	Object.defineProperty(Class.prototype, publicProperty, {
+		get() {
+			return this[privateProperty];
+		},
+		set(value) {
+			if (this[privateProperty] !== value) {
+				this[privateProperty] = value;
+				this.needsRedraw = true;
+			}
+		},
+	});
+});
+
+export default Class;
