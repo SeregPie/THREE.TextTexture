@@ -1,6 +1,5 @@
 import {terser} from 'rollup-plugin-terser';
 import babel from '@rollup/plugin-babel';
-import nodeResolve from '@rollup/plugin-node-resolve';
 
 import {main} from './package.json';
 
@@ -12,10 +11,11 @@ export default {
 	external: Object.keys(globals),
 	input: 'src/index.js',
 	plugins: [
-		nodeResolve(),
 		babel({
 			babelHelpers: 'bundled',
-			presets: ['@babel/preset-env'],
+			presets: [['@babel/preset-env', {
+				targets: ['defaults', 'not IE 11'],
+			}]],
 		}),
 		terser(),
 	],

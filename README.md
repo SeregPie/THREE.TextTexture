@@ -31,7 +31,7 @@ The class is globally available as `THREE.TextTexture`.
 
 ```javascript
 let texture = new THREE.TextTexture({
-  colo: '#24ff00',
+  color: '#24ff00',
   fontFamily: '"Times New Roman", Times, serif',
   fontSize: 32,
   fontStyle: 'italic',
@@ -64,6 +64,7 @@ texture.text = [
   'Then you show your little light,',
   'Twinkle, twinkle, through the night.',
 ].join('\n');
+await texture.loadFontFace();
 texture.redraw();
 sprite.scale
   .set(texture.image.width / texture.image.height, 1, 1)
