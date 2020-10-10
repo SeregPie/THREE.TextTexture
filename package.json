@@ -26,6 +26,6 @@
 		"rollup-plugin-terser": "^7.0.2"
 	},
 	"peerDependencies": {
-		"three": ">=0.86"
+		"three": ">=0.113"
 	}
 }

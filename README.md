@@ -1,8 +1,8 @@
 # THREE.TextTexture
 
-`class THREE.TextTexture extends THREE.Texture`
+`class THREE.TextTexture extends THREE.CanvasTexture`
 
-An instance of `TextTexture` is a texture with the drawn text.
+A texture with the drawn text.
 
 ## setup
 
@@ -12,7 +12,7 @@ An instance of `TextTexture` is a texture with the drawn text.
 npm i @seregpie/three.text-texture
 ```
 
-### ES module
+---
 
 ```javascript
 import TextTexture from '@seregpie/three.text-texture';
@@ -31,6 +31,7 @@ The class is globally available as `THREE.TextTexture`.
 
 ```javascript
 let texture = new THREE.TextTexture({
+  alignment: 'left',
   color: '#24ff00',
   fontFamily: '"Times New Roman", Times, serif',
   fontSize: 32,
@@ -44,11 +45,8 @@ let texture = new THREE.TextTexture({
 });
 let material = new THREE.SpriteMaterial({map: texture});
 let sprite = new THREE.Sprite(material);
-let spriteScale = 10;
 texture.redraw();
-sprite.scale
-  .set(texture.image.width / texture.image.height, 1, 1)
-  .multiplyScalar(spriteScale);
+sprite.scale.setY(texture.height / texture.width);
 scene.add(sprite);
 ```
 
@@ -58,17 +56,15 @@ Update the texture.
 
 ```javascript
 texture.fontFamily = 'Arial, Helvetica, sans-serif';
+texture.fontStyle = 'normal';
 texture.text = [
   'When this blazing sun is gone,',
   'When he nothing shines upon,',
   'Then you show your little light,',
   'Twinkle, twinkle, through the night.',
 ].join('\n');
-await texture.loadFontFace();
 texture.redraw();
-sprite.scale
-  .set(texture.image.width / texture.image.height, 1, 1)
-  .multiplyScalar(spriteScale);
+sprite.scale.setY(texture.height / texture.width);
 ```
 
 ## members
@@ -77,16 +73,16 @@ sprite.scale
 
 ```
 new THREE.TextTexture({
-  align: 'center',
-  fillStyle: '#fff',
+  alignment: 'center',
+  color: '#fff',
   fontFamily: 'sans-serif',
-  fontSize: 16,
+  fontSize: 1,
   fontStyle: 'normal',
   fontVariant: 'normal',
   fontWeight: 'normal',
-  lineGap: 0.15,
-  padding: 0.25,
-  strokeStyle: '#000',
+  lineGap: 0.25,
+  padding: 0.5,
+  strokeColor: '#fff',
   strokeWidth: 0,
   text: '',
 })
@@ -94,8 +90,8 @@ new THREE.TextTexture({
 
 | argument | description |
 | ---: | :--- |
-| `align` | The horizontal text alignment. Possible values are `'center'`, `'left'` and `'right'`. |
-| `fillStyle` | The fill color or style. |
+| `alignment` | The horizontal text alignment. Possible values are `'center'`, `'left'` and `'right'`. |
+| `color` | The color. |
 | `fontFamily` | The font family. |
 | `fontSize` | The font size. |
 | `fontStyle` | The font style. |
@@ -103,7 +99,7 @@ new THREE.TextTexture({
 | `fontWeight` | The font weight. |
 | `lineGap` | The vertical distance between the text lines. The value is relative to the font size. |
 | `padding` | The space around the text. The value is relative to the font size. |
-| `strokeStyle` | The stroke color or style. |
+| `strokeColor` | The stroke color. |
 | `strokeWidth` | The stroke width. The value is relative to the font size. |
 | `text` | The text. |
 
@@ -127,13 +123,13 @@ Used to check whether this is an instance of `TextTexture`.
 
 `.fontStyle`
 
-`.fillStyle`
+`.color`
 
 `.strokeWidth`
 
-`.strokeStyle`
+`.strokeColor`
 
-`.align`
+`.alignment`
 
 `.lineGap`
 
@@ -141,19 +137,11 @@ Used to check whether this is an instance of `TextTexture`.
 
 ---
 
-`.lines`
-
-*read-only*
-
-The text splitted by the newline character.
-
----
-
 `.width`
 
 *read-only*
 
-The width. The value is relative to the font size.
+The width of the image.
 
 ---
 
@@ -161,7 +149,14 @@ The width. The value is relative to the font size.
 
 *read-only*
 
-The height. The value is relative to the font size.
+The height of the image.
+
+---
+
+`.pixelRatio = 1`
+
+The pixel ratio of the image.
+
 
 ### methods
 
@@ -171,25 +166,17 @@ Redraws the image.
 
 ---
 
-`.computeOptimalFontSize(object, renderer, camera, needsPowerOfTwo = false)`
+`.setOptimalPixelRatio(object, renderer, camera)`
 
-Computes the optimal font size depending on the distance of the object to the camera and the size of the renderer DOM element.
+Set the optimal pixel ratio depending on the distance of the object to the camera and the size of the renderer DOM element.
 
 | argument | description |
 | ---: | :--- |
 | `object` | An instance of `THREE.Object3D`. |
 | `renderer` | An instance with a `domElement` property. |
 | `camera` | An instance of `THREE.Camera`. |
-| `needsPowerOfTwo` | If `true`, the font size is rounded to the power of two. |
-
-Returns the computed font size.
-
----
-
-`.computeAndSetOptimalFontSize(...args)`
-
-Sets `fontSize` to the value returned by the function `computeOptimalFontSize`.
 
 ## see also
 
 - [THREE.TextSprite](https://github.com/SeregPie/THREE.TextSprite)
+- [THREE.TextPlane](https://github.com/SeregPie/THREE.TextPlane)
