@@ -172,7 +172,7 @@ Set the optimal pixel ratio depending on the distance of the object to the camer
 | argument | description |
 | ---: | :--- |
 | `object` | An instance of `THREE.Object3D`. |
-| `renderer` | An instance with a `domElement` property. |
+| `renderer` | A renderer. |
 | `camera` | An instance of `THREE.Camera`. |
 
 ## see also

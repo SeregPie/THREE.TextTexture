@@ -1,7 +1,7 @@
 import {
 	MathUtils,
 	Texture,
-	//Vector3,
+	Vector3,
 } from 'three';
 
 let Class = class extends Texture {
@@ -34,15 +34,13 @@ let Class = class extends Texture {
 		});
 
 		let getOptimalPixelRatio = (() => {
-			return (() => 1);
-			/*let cameraPosition = new Vector3();
+			let cameraPosition = new Vector3();
 			let objectPosition = new Vector3();
 			let objectScale = new Vector3();
 			return ((object, renderer, camera) => {
 				let width = getWidth();
 				let height = getHeight();
 				if (width && height) {
-					let maxTextureSize = renderer.capabilities?.maxTextureSize ?? Infinity;
 					object.getWorldPosition(objectPosition);
 					camera.getWorldPosition(cameraPosition);
 					let distance = objectPosition.distanceTo(cameraPosition);
@@ -54,21 +52,19 @@ let Class = class extends Texture {
 					}
 					if (distance) {
 						object.getWorldScale(objectScale);
-						// todo
-						let fontSize = objectScale.y * renderer.domElement.offsetHeight / distance / height;
-						width *= fontSize;
-						height *= fontSize;
-						if (textureWidth > maxTextureSize) {
-							textureWidth = maxTextureSize;
-						}
-						if (textureHeight > maxTextureSize) {
-							textureHeight = maxTextureSize;
-						}
-						return fontSize;
+						let maxTextureSize = renderer.capabilities?.maxTextureSize ?? Infinity;
+						return Math.min(
+							Math.max(
+								(objectScale.x / distance) * (renderer.domElement.offsetWidth / width),
+								(objectScale.y / distance) * (renderer.domElement.offsetHeight / height),
+							),
+							maxTextureSize / width,
+							maxTextureSize / height,
+						);
 					}
 				}
 				return 0;
-			});*/
+			});
 		})();
 
 		Object.defineProperties(this, {
