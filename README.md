@@ -137,6 +137,14 @@ Used to check whether this is an instance of `TextTexture`.
 
 ---
 
+`.font`
+
+*read-only*
+
+The font specification using the CSS value syntax.
+
+---
+
 `.width`
 
 *read-only*
@@ -162,6 +170,22 @@ The pixel ratio of the image.
 `.redraw()`
 
 Redraws the image.
+
+---
+
+`.checkFontFace()`
+
+Checks whether the font face has been loaded and is available.
+
+Returns a boolean.
+
+---
+
+`.loadFontFace()`
+
+Forces the font face to be loaded.
+
+Returns a promise.
 
 ---
 

@@ -110,6 +110,7 @@ let Class = class extends Texture {
 					this.needsUpdate = true;
 				}
 			},
+
 			setOptimalPixelRatio(...args) {
 				setPixelRatio(computeOptimalPixelRatio(...args));
 			},
