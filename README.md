@@ -157,7 +157,6 @@ The height of the image.
 
 The pixel ratio of the image.
 
-
 ### methods
 
 `.redraw()`

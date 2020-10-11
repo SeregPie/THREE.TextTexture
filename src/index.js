@@ -54,7 +54,7 @@ let Class = class extends AbstractDynamicTexture {
 		);
 	}
 
-	createDrawer() {
+	createDrawable() {
 		let {
 			alignment,
 			color,
@@ -77,7 +77,7 @@ let Class = class extends AbstractDynamicTexture {
 				let canvas = document.createElement('canvas');
 				let ctx = canvas.getContext('2d');
 				ctx.font = font;
-				return Math.max(...lines.map(text => ctx.measureText(text).width))
+				return Math.max(...lines.map(text => ctx.measureText(text).width));
 			})()
 			: 0
 		);
@@ -126,8 +126,6 @@ let Class = class extends AbstractDynamicTexture {
 	}
 };
 
-Object.assign(Class.prototype, {
-	isTextTexture: true,
-})
+Class.prototype.isTextTexture = true;
 
 export default Class;
