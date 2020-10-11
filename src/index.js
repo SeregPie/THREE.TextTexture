@@ -10,8 +10,8 @@ let Class = class extends AbstractDynamicTexture {
 		fontStyle = 'normal',
 		fontVariant = 'normal',
 		fontWeight = 'normal',
-		lineGap = 1/2,
-		padding = 1,
+		lineGap = 1/4,
+		padding = 1/2,
 		strokeColor = '#fff',
 		strokeWidth = 0,
 		text = '',
@@ -37,6 +37,7 @@ let Class = class extends AbstractDynamicTexture {
 				},
 				set(value) {
 					if (currentValue !== value) {
+						currentValue = value;
 						this.needsRedraw = true;
 					}
 				},

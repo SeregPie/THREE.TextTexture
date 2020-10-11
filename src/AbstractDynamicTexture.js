@@ -9,6 +9,7 @@ let Class = class extends Texture {
 		super(document.createElement('canvas'));
 		let drawable = null;
 		let getDrawable = (() => drawable || (drawable = this.createDrawable()));
+		//let getWidth = (() => 0);
 		let getWidth = (() => getDrawable().width);
 		let getHeight = (() => getDrawable().height);
 		let draw = ((...args) => getDrawable().draw(...args));
@@ -33,7 +34,7 @@ let Class = class extends Texture {
 			}
 		});
 
-		let getOptimalPixelRatio = (() => {
+		let computeOptimalPixelRatio = (() => {
 			let cameraPosition = new Vector3();
 			let objectPosition = new Vector3();
 			let objectScale = new Vector3();
@@ -97,16 +98,20 @@ let Class = class extends Texture {
 					ctx.clearRect(0, 0, canvas.width, canvas.height);
 					canvas.width = getTextureWidth();
 					canvas.height = getTextureHeight();
-					ctx.save();
-					ctx.scale(canvas.width / getWidth(), canvas.height / getHeight());
-					draw(ctx);
-					ctx.restore();
+					if (canvas.width && canvas.height) {
+						ctx.save();
+						ctx.scale(canvas.width / getWidth(), canvas.height / getHeight());
+						draw(ctx);
+						ctx.restore();
+					} else {
+						canvas.width = canvas.height = 1;
+					}
 					needsRedraw = false;
 					this.needsUpdate = true;
 				}
 			},
 			setOptimalPixelRatio(...args) {
-				setPixelRatio(getOptimalPixelRatio(...args));
+				setPixelRatio(computeOptimalPixelRatio(...args));
 			},
 		});
 	}
