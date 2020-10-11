@@ -55,6 +55,24 @@ let Class = class extends AbstractDynamicTexture {
 		);
 	}
 
+	checkFontFace() {
+		if (document.fonts) {
+			if (document.fonts.check) {
+				return document.fonts.check(this.font);
+			}
+		}
+		return true;
+	}
+
+	loadFontFace() {
+		if (document.fonts) {
+			if (document.fonts.load) {
+				return document.fonts.load(this.font);
+			}
+		}
+		return Promise.resolve();
+	}
+
 	createDrawable() {
 		let {
 			alignment,
