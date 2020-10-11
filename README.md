@@ -137,6 +137,14 @@ Used to check whether this is an instance of `TextTexture`.
 
 ---
 
+`.lines`
+
+*read-only*
+
+The text split by the new line character.
+
+---
+
 `.font`
 
 *read-only*

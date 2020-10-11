@@ -45,6 +45,10 @@ let Class = class extends AbstractDynamicTexture {
 		});
 	}
 
+	get lines() {
+		return text ? text.split('\n') : [];
+	}
+
 	get font() {
 		return toCSSFont(
 			this.fontFamily,
@@ -79,15 +83,14 @@ let Class = class extends AbstractDynamicTexture {
 			font,
 			fontSize,
 			lineGap,
+			lines,
 			padding,
 			strokeColor,
 			strokeWidth,
-			text,
 		} = this;
 		padding *= fontSize;
 		lineGap *= fontSize;
 		strokeWidth *= fontSize;
-		let lines = text ? text.split('\n') : [];
 		let linesCount = lines.length;
 		let lineOffset = fontSize + lineGap;
 		let contentWidth = (linesCount
