@@ -46,6 +46,7 @@ let Class = class extends AbstractDynamicTexture {
 	}
 
 	get lines() {
+		let {text} = this;
 		return text ? text.split('\n') : [];
 	}
 
