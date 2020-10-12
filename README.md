@@ -76,7 +76,7 @@ new THREE.TextTexture({
   alignment: 'center',
   color: '#fff',
   fontFamily: 'sans-serif',
-  fontSize: 1,
+  fontSize: 16,
   fontStyle: 'normal',
   fontVariant: 'normal',
   fontWeight: 'normal',
