@@ -5,20 +5,20 @@ import {
 	WebGLRenderer,
 } from 'three';
 
-export default class extends Texture {
+export default class TextTexture extends Texture {
 	constructor(options?: {
-		alignment?: string = 'center';
-		color?: string = '#fff';
-		fontFamily?: string = 'sans-serif';
-		fontSize?: number = 16;
-		fontStyle?: string = 'normal';
-		fontVariant?: string = 'normal';
-		fontWeight?: string = 'normal';
-		lineGap?: number = 1/4;
-		padding?: number = 1/2;
-		strokeColor?: string = '#fff';
-		strokeWidth?: number = 0;
-		text?: string = '';
+		alignment?: string;
+		color?: string;
+		fontFamily?: string;
+		fontSize?: number;
+		fontStyle?: string;
+		fontVariant?: string;
+		fontWeight?: string;
+		lineGap?: number;
+		padding?: number;
+		strokeColor?: string;
+		strokeWidth?: number;
+		text?: string;
 	});
 
 	readonly isTextTexture: true;
@@ -55,7 +55,7 @@ export default class extends Texture {
 
 	readonly height: number;
 
-	pixelRatio: number = 1;
+	pixelRatio: number;
 
 	redraw(): void;
 
@@ -68,4 +68,4 @@ export default class extends Texture {
 	checkFontFace(): boolean;
 
 	loadFontFace(): Promise<void>;
-};
+}
