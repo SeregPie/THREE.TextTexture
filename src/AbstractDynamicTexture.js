@@ -1,6 +1,7 @@
 import {
 	MathUtils,
 	Texture,
+	Vector2,
 	Vector3,
 } from 'three';
 
@@ -11,6 +12,10 @@ let Class = class extends Texture {
 		let getDrawable = (() => drawable || (drawable = this.createDrawable()));
 		let getWidth = (() => getDrawable().width);
 		let getHeight = (() => getDrawable().height);
+		let getSize = (target => {
+			target.set(getWidth(), getHeight());
+			return target;
+		});
 		let draw = ((...args) => getDrawable().draw(...args));
 
 		let needsRedraw = true;
@@ -35,12 +40,13 @@ let Class = class extends Texture {
 
 		let computeOptimalPixelRatio = (() => {
 			let cameraPosition = new Vector3();
+			let canvasSize = new Vector2();
 			let objectPosition = new Vector3();
 			let objectScale = new Vector3();
+			let textureSize = new Vector2();
 			return ((object, renderer, camera) => {
-				let width = getWidth();
-				let height = getHeight();
-				if (width && height) {
+				getSize(textureSize);
+				if (textureSize.x && textureSize.y) {
 					object.getWorldPosition(objectPosition);
 					camera.getWorldPosition(cameraPosition);
 					let distance = objectPosition.distanceTo(cameraPosition);
@@ -53,13 +59,14 @@ let Class = class extends Texture {
 					if (distance) {
 						object.getWorldScale(objectScale);
 						let maxTextureSize = renderer.capabilities?.maxTextureSize ?? Infinity;
+						renderer.getDrawingBufferSize(canvasSize);
 						return Math.min(
 							Math.max(
-								(objectScale.x / distance) * (renderer.domElement.offsetWidth / width),
-								(objectScale.y / distance) * (renderer.domElement.offsetHeight / height),
+								(objectScale.x / distance) * (canvasSize.x / textureSize.x),
+								(objectScale.y / distance) * (canvasSize.y / textureSize.y),
 							),
-							maxTextureSize / width,
-							maxTextureSize / height,
+							maxTextureSize / textureSize.x,
+							maxTextureSize / textureSize.y,
 						);
 					}
 				}
