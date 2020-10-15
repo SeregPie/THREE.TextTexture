@@ -79,7 +79,7 @@ let Class = class extends AbstractDynamicTexture {
 				font,
 				lines,
 			} = this;
-			return await Promise.all(lines.map(text => document.fonts.load(font, text)));
+			await Promise.all(lines.map(text => document.fonts.load(font, text)));
 		} catch {
 			// pass
 		}
