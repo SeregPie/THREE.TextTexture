@@ -1,6 +1,6 @@
 # THREE.TextTexture
 
-`class THREE.TextTexture extends THREE.CanvasTexture`
+`class THREE.TextTexture extends THREE.Texture`
 
 A texture with the drawn text.
 
