@@ -45,7 +45,7 @@ let Class = class extends Texture {
 					camera.getWorldPosition(cameraPosition);
 					let distance = objectPosition.distanceTo(cameraPosition);
 					if (camera.isPerspectiveCamera) {
-						distance *= Math.tan(THREE.Math.degToRad(camera.fov) / 2) * 2;
+						distance *= Math.tan(MathUtils.degToRad(camera.fov) / 2) * 2;
 					}
 					if (camera.isPerspectiveCamera || camera.isOrthographicCamera) {
 						distance /= camera.zoom;
