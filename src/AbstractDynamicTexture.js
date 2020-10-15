@@ -9,7 +9,6 @@ let Class = class extends Texture {
 		super(document.createElement('canvas'));
 		let drawable = null;
 		let getDrawable = (() => drawable || (drawable = this.createDrawable()));
-		//let getWidth = (() => 0);
 		let getWidth = (() => getDrawable().width);
 		let getHeight = (() => getDrawable().height);
 		let draw = ((...args) => getDrawable().draw(...args));
