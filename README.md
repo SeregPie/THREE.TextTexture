@@ -74,6 +74,7 @@ sprite.scale.setY(texture.height / texture.width);
 ```
 new THREE.TextTexture({
   alignment: 'center',
+  backgroundColor = 'rgba(0,0,0,0)',
   color: '#fff',
   fontFamily: 'sans-serif',
   fontSize: 16,
@@ -91,6 +92,7 @@ new THREE.TextTexture({
 | argument | description |
 | ---: | :--- |
 | `alignment` | The horizontal text alignment. Possible values are `'center'`, `'left'` and `'right'`. |
+| `backgroundColor` | The background color. |
 | `color` | The color. |
 | `fontFamily` | The font family. |
 | `fontSize` | The font size. |
@@ -134,6 +136,8 @@ Used to check whether this is an instance of `TextTexture`.
 `.lineGap`
 
 `.padding`
+
+`.backgroundColor`
 
 ---
 

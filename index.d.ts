@@ -8,6 +8,7 @@ import {
 export default class TextTexture extends Texture {
 	constructor(options?: {
 		alignment?: string;
+		backgroundColor?: string;
 		color?: string;
 		fontFamily?: string;
 		fontSize?: number;
@@ -46,6 +47,8 @@ export default class TextTexture extends Texture {
 	lineGap: number;
 
 	padding: number;
+
+	backgroundColor: string;
 
 	readonly lines: string[];
 

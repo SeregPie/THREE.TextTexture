@@ -4,6 +4,7 @@ import toCSSFont from './toCSSFont';
 let Class = class extends AbstractDynamicTexture {
 	constructor({
 		alignment = 'center',
+		backgroundColor = 'rgba(0,0,0,0)',
 		color = '#fff',
 		fontFamily = 'sans-serif',
 		fontSize = 16,
@@ -19,6 +20,7 @@ let Class = class extends AbstractDynamicTexture {
 		super();
 		Object.entries({
 			alignment,
+			backgroundColor,
 			color,
 			fontFamily,
 			fontSize,
@@ -88,6 +90,7 @@ let Class = class extends AbstractDynamicTexture {
 	createDrawable() {
 		let {
 			alignment,
+			backgroundColor,
 			color,
 			font,
 			fontSize,
@@ -122,6 +125,8 @@ let Class = class extends AbstractDynamicTexture {
 			width,
 			height,
 			draw(ctx) {
+				ctx.fillStyle = backgroundColor;
+				ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 				let left;
 				let top = contentOffset + fontSize / 2;
 				Object.assign(ctx, {
