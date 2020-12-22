@@ -64,11 +64,8 @@ let Class = class extends AbstractDynamicTexture {
 
 	checkFontFace() {
 		try {
-			let {
-				font,
-				lines,
-			} = this;
-			return lines.every(text => document.fonts.check(font, text));
+			let {font} = this;
+			return document.fonts.check(font);
 		} catch {
 			// pass
 		}
@@ -77,11 +74,8 @@ let Class = class extends AbstractDynamicTexture {
 
 	async loadFontFace() {
 		try {
-			let {
-				font,
-				lines,
-			} = this;
-			await Promise.all(lines.map(text => document.fonts.load(font, text)));
+			let {font} = this;
+			await document.fonts.load(font);
 		} catch {
 			// pass
 		}
