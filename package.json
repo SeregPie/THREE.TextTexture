@@ -1,6 +1,6 @@
 {
 	"name": "@seregpie/three.text-texture",
-	"version": "3.2.0",
+	"version": "3.2.1",
 	"description": "A texture with the drawn text.",
 	"keywords": [
 		"text",
