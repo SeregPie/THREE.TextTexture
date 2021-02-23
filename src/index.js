@@ -1,5 +1,5 @@
 import AbstractDynamicTexture from './AbstractDynamicTexture';
-import toCSSFont from './toCSSFont';
+import toCSSFont from './utils/toCSSFont';
 
 let Class = class extends AbstractDynamicTexture {
 	constructor({
@@ -81,7 +81,7 @@ let Class = class extends AbstractDynamicTexture {
 		}
 	}
 
-	createDrawable() {
+	createDrawing() {
 		let {
 			alignment,
 			backgroundColor,

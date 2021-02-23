@@ -8,30 +8,30 @@ import {
 let Class = class extends Texture {
 	constructor() {
 		super(document.createElement('canvas'));
-		let drawable = null;
-		let getDrawable = (() => drawable || (drawable = this.createDrawable()));
-		let getWidth = (() => getDrawable().width);
-		let getHeight = (() => getDrawable().height);
+		let drawing = null;
+		let getDrawing = (() => drawing ??= this.createDrawing());
+		let getWidth = (() => getDrawing().width);
+		let getHeight = (() => getDrawing().height);
 		let getSize = (target => {
 			target.set(getWidth(), getHeight());
 			return target;
 		});
-		let draw = ((...args) => getDrawable().draw(...args));
+		let draw = ((...args) => getDrawing().draw(...args));
 
 		let needsRedraw = true;
 
 		let pixelRatio = 1;
 
-		let getTextureWidth = (() => MathUtils.ceilPowerOfTwo(getWidth() * pixelRatio));
-		let getTextureHeight = (() => MathUtils.ceilPowerOfTwo(getHeight() * pixelRatio));
+		let getDrawingBufferWidth = (() => MathUtils.ceilPowerOfTwo(getWidth() * pixelRatio));
+		let getDrawingBufferHeight = (() => MathUtils.ceilPowerOfTwo(getHeight() * pixelRatio));
 
 		let setPixelRatio = (value => {
 			if (pixelRatio !== value) {
-				let oldWidth = getTextureWidth();
-				let oldHeight = getTextureHeight();
+				let oldWidth = getDrawingBufferWidth();
+				let oldHeight = getDrawingBufferHeight();
 				pixelRatio = value;
-				let newWidth = getTextureWidth();
-				let newHeight = getTextureHeight();
+				let newWidth = getDrawingBufferWidth();
+				let newHeight = getDrawingBufferHeight();
 				if ((newWidth !== oldWidth) || (newHeight !== oldHeight)) {
 					needsRedraw = true;
 				}
@@ -40,7 +40,7 @@ let Class = class extends Texture {
 
 		let computeOptimalPixelRatio = (() => {
 			let cameraPosition = new Vector3();
-			let canvasSize = new Vector2();
+			let rendererSize = new Vector2();
 			let objectPosition = new Vector3();
 			let objectScale = new Vector3();
 			let textureSize = new Vector2();
@@ -59,11 +59,11 @@ let Class = class extends Texture {
 					if (distance) {
 						object.getWorldScale(objectScale);
 						let maxTextureSize = renderer.capabilities?.maxTextureSize ?? Infinity;
-						renderer.getDrawingBufferSize(canvasSize);
+						renderer.getDrawingBufferSize(rendererSize);
 						return Math.min(
 							Math.max(
-								(objectScale.x / distance) * (canvasSize.x / textureSize.x),
-								(objectScale.y / distance) * (canvasSize.y / textureSize.y),
+								(objectScale.x / distance) * (rendererSize.x / textureSize.x),
+								(objectScale.y / distance) * (rendererSize.y / textureSize.y),
 							),
 							maxTextureSize / textureSize.x,
 							maxTextureSize / textureSize.y,
@@ -91,7 +91,7 @@ let Class = class extends Texture {
 				set(value) {
 					if (value) {
 						needsRedraw = true;
-						drawable = null;
+						drawing = null;
 					}
 				},
 			},
@@ -102,8 +102,8 @@ let Class = class extends Texture {
 					let canvas = this.image;
 					let ctx = canvas.getContext('2d');
 					ctx.clearRect(0, 0, canvas.width, canvas.height);
-					canvas.width = getTextureWidth();
-					canvas.height = getTextureHeight();
+					canvas.width = getDrawingBufferWidth();
+					canvas.height = getDrawingBufferHeight();
 					if (canvas.width && canvas.height) {
 						ctx.save();
 						ctx.scale(canvas.width / getWidth(), canvas.height / getHeight());
